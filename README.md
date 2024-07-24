@@ -1,3 +1,3 @@
-# cs361 project
+# Let's Get Cooking!
 
 This repository is for my CS361 project that I developed during the summer 2024 term.
