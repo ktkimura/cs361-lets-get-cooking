@@ -1,24 +1,42 @@
-import logo from './logo.svg';
+// Import dependencies
+import React from 'react';
 import './App.css';
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
+
+// Import components
+import Navigation from './components/Navigation';
+
+// Import pages
+import HomePage from './pages/HomePage';
+import RecipesPage from './pages/RecipesPage';
+import PantryPage from './pages/PantryPage';
+import HelpPage from './pages/HelpPage';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <BrowserRouter>
+        <header>
+            <h1>Let's Get Cooking!</h1>
+        </header>
+        <Navigation />
+        <main>
+          <section>
+            <Routes>
+              <Route path="/" element={<HomePage />}></Route>
+              <Route path="/recipes" element={<RecipesPage />}></Route>
+              <Route path="/pantry" element={<PantryPage />}></Route>
+              <Route path="/help" element={<HelpPage />}></Route>
+            </Routes>
+          </section>
+        </main>
+        <footer>
+              <p>&copy; 2024 Katie Kimura.</p>
+        </footer>
+      </BrowserRouter>
+      
+    </>
   );
 }
 
