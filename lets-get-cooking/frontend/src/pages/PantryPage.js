@@ -3,10 +3,11 @@ import { Link } from 'react-router-dom';
 
 function PantryPage(){
 
-    const [ingredients, setIngredients] = useState([]);
+    const [ingredients, setIngredients]                 = useState([]);
     // eslint-disable-next-line
-    const [loading, setLoading]         = useState(false)
-
+    const [loading, setLoading]                         = useState(false)
+    const [showModal, setShowModal]                     = useState(false);
+    const [selectedIngredient, setSelectedIngredient]   = useState(null);
 
     /*  Citation for getIngredients() and deleteIngredients() functions: 
     *   Date: 07/27/2024
@@ -29,9 +30,20 @@ function PantryPage(){
             method: 'DELETE',
         }).then(() => {
             getIngredients();
+            setShowModal(false);
         });
     }
     
+    function handleDeleteClick(ingredient) {
+        console.log(showModal);
+        setSelectedIngredient(ingredient);
+        setShowModal(true);
+    }
+
+    function handleConfirmDelete() {
+        deleteIngredient(selectedIngredient.id);
+    }
+
 
     useEffect(() => {
         getIngredients();
@@ -61,12 +73,22 @@ function PantryPage(){
                         <td>
                             {/* each row in table has its own edit and delete button that will auto-populate with that row's ingredient data */}
                             <Link to={`/editIngredient/${ingredient.id}`} class="btn">Edit</Link>
-                            <button onClick={() => deleteIngredient(ingredient.id)}>Delete</button> 
+                            <button onClick={() => handleDeleteClick(ingredient)}>Delete</button> 
                         </td>
                     </tr>
                 ))}
             </tbody>
         </table>
+        {showModal && (
+            <div className="modal">
+                <div className="modal-content">
+                    <h3>Are you sure you want to delete this ingredient?</h3>
+                    <p>This action will permanently remove {selectedIngredient?.name} from your pantry!</p>
+                    <button onClick={handleConfirmDelete}>Confirm</button>
+                    <button onClick={() => setShowModal(false)}>Cancel</button>
+                </div>
+            </div>
+        )}
 
         </>
     );

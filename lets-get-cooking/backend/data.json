@@ -1,11 +1,18 @@
 {
   "ingredients": [
     {
-      "id": "c974",
-      "ingredientID": "93de7bdd-3176-4772-a62b-3eabc2534b9b",
+      "id": "7d1d",
+      "ingredientID": "4d11852b-7e92-481f-9d15-7ebdd541fa29",
+      "name": "test ingredient",
+      "quantity": "12",
+      "expirationDate": "2024-12-20"
+    },
+    {
+      "id": "cd25",
+      "ingredientID": "c2412317-323d-404d-9170-eb86e82c3426",
       "name": "test",
-      "quantity": "100",
-      "expirationDate": "2024-07-27"
+      "quantity": "123",
+      "expirationDate": "2024-11-01"
     }
   ],
   "recipes": [

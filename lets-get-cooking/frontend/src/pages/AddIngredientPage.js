@@ -6,6 +6,7 @@ const AddIngredientPage = () => {
     const [name, setName]                       = useState('');
     const [quantity, setQuantity]               = useState('');
     const [expirationDate, setExpirationDate]   = useState('');
+    const [showModal, setShowModal]             = useState(false);
 
     const redirect = useNavigate('/pantry');
 
@@ -25,10 +26,12 @@ const AddIngredientPage = () => {
             body: JSON.stringify({ingredientID, name, quantity, expirationDate}),
         })
         .then(response => response.json())
-        .then(data => {
-            console.log('Ingredient added: ', data);
-            redirect('/pantry')
-        })  
+        .then(() => {
+            setShowModal(true);
+            setTimeout(() => {
+                redirect('/pantry');
+            }, 3000); 
+        })
     }
 
     function handleSubmit(e){
@@ -39,32 +42,42 @@ const AddIngredientPage = () => {
     return (
         <div>
             <h3>Add Ingredient</h3>
-            <form onSubmit={handleSubmit}>
-                <label for="name">Name:</label>
-                <input 
-                    type="text" 
-                    placeholder="Name of ingredient"
-                    value={name} 
-                    id="name"
-                    onChange={e => setName(e.target.value)}
-                    required/>
-                <label for="quantity">Quantity:</label>
-                <input 
-                    type="number" 
-                    placeholder="nice"
-                    value={quantity} 
-                    id="quantity"
-                    onChange={e => setQuantity(e.target.value)}/>
-                <label for="expDate">Expiration Date:</label>
-                <input 
-                    type="text" 
-                    placeholder="YYYY-MM-DD"
-                    value={expirationDate} 
-                    id="expDate"
-                    onChange={e => setExpirationDate(e.target.value)}/>
-                <button type="submit">Submit</button>
-                <Link to="/pantry" class="btn">Return to Pantry</Link>
-            </form>
+            <div>
+                {showModal && (
+                    <div class="modal">
+                        <div class="modal-content">
+                            <h3>Ingredient Added!</h3>
+                            <p>You will be automatically redirected to the Pantry page where the ingredient should now display.</p>
+                        </div>
+                    </div>
+                )}
+                <form onSubmit={handleSubmit}>
+                    <label for="name">Name:</label>
+                    <input 
+                        type="text" 
+                        placeholder="Name of ingredient"
+                        value={name} 
+                        id="name"
+                        onChange={e => setName(e.target.value)}
+                        required/>
+                    <label for="quantity">Quantity:</label>
+                    <input 
+                        type="number" 
+                        placeholder="nice"
+                        value={quantity} 
+                        id="quantity"
+                        onChange={e => setQuantity(e.target.value)}/>
+                    <label for="expDate">Expiration Date:</label>
+                    <input 
+                        type="text" 
+                        placeholder="YYYY-MM-DD"
+                        value={expirationDate} 
+                        id="expDate"
+                        onChange={e => setExpirationDate(e.target.value)}/>
+                    <button type="submit">Submit</button>
+                    <Link to="/pantry" class="btn">Return to Pantry</Link>
+                </form>
+            </div>
         </div>
     )
 }
