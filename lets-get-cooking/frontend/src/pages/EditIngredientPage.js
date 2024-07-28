@@ -39,7 +39,7 @@ const EditIngredientPage = () => {
             setShowModal(true);
             setTimeout(() => {
                 redirect('/pantry');
-            }, 3000); 
+            }, 2500); 
         })
     }
 
@@ -64,7 +64,6 @@ const EditIngredientPage = () => {
                     <label for="name">Name:</label>
                     <input 
                         type="text" 
-                        placeholder="Name of ingredient"
                         value={name} 
                         id="name"
                         onChange={e => setName(e.target.value)}
@@ -72,18 +71,16 @@ const EditIngredientPage = () => {
                     <label for="quantity">Quantity:</label>
                     <input 
                         type="number" 
-                        placeholder="nice"
                         value={quantity} 
                         id="quantity"
                         onChange={e => setQuantity(e.target.value)}/>
                     <label for="expDate">Expiration Date:</label>
                     <input 
                         type="text" 
-                        placeholder="YYYY-MM-DD"
                         value={expirationDate} 
                         id="expDate"
                         onChange={e => setExpirationDate(e.target.value)}/>
-                    <button type="submit">Confirm</button>
+                    <button type="submit">Save Changes</button>
                     <Link to="/pantry" class="btn">Return to Pantry</Link>
                 </form>
             </div>

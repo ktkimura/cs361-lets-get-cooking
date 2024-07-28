@@ -21,12 +21,11 @@ function PantryPage(){
             .then(result => {
                 setLoading(false);
                 setIngredients(result);
-                console.log(ingredients);
             })
     }
 
-    function deleteIngredient(ingredientID) {
-        fetch(`http://localhost:8000/ingredients/${ingredientID}`, {
+    function deleteIngredient(id) {
+        fetch(`http://localhost:8000/ingredients/${id}`, {
             method: 'DELETE',
         }).then(() => {
             getIngredients();
@@ -35,7 +34,6 @@ function PantryPage(){
     }
     
     function handleDeleteClick(ingredient) {
-        console.log(showModal);
         setSelectedIngredient(ingredient);
         setShowModal(true);
     }

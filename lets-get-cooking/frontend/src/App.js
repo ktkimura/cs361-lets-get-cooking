@@ -13,6 +13,8 @@ import PantryPage from './pages/PantryPage';
 import HelpPage from './pages/HelpPage';
 import AddIngredientPage from './pages/AddIngredientPage';
 import EditIngredientPage from './pages/EditIngredientPage';
+import AddRecipePage from './pages/AddRecipePage';
+import EditRecipePage from './pages/EditRecipePage';
 
 
 function App() {
@@ -34,6 +36,8 @@ function App() {
 
               <Route path="/addIngredient" element={<AddIngredientPage />}></Route>
               <Route path="/editIngredient/:id" element={<EditIngredientPage />}></Route>
+              <Route path="/addRecipe" element={<AddRecipePage />}></Route>
+              <Route path="/editRecipe/:id" element={<EditRecipePage />}></Route>
             </Routes>
           </section>
         </main>

@@ -1,27 +1,28 @@
 {
   "ingredients": [
     {
-      "id": "7d1d",
-      "ingredientID": "4d11852b-7e92-481f-9d15-7ebdd541fa29",
-      "name": "test ingredient",
-      "quantity": "12",
-      "expirationDate": "2024-12-20"
+      "id": "c60c70ff-e772-44f1-918b-2526013c01cc",
+      "name": "apples",
+      "quantity": "3",
+      "expirationDate": "2024-07-31"
     },
     {
-      "id": "cd25",
-      "ingredientID": "c2412317-323d-404d-9170-eb86e82c3426",
-      "name": "test",
-      "quantity": "123",
-      "expirationDate": "2024-11-01"
+      "id": "3f587783-6c13-4028-a622-e7e9195ab236",
+      "name": "kyle",
+      "quantity": "100",
+      "expirationDate": "2024-10-10"
     }
   ],
   "recipes": [
     {
-      "id": "1",
-      "name": "Miso Salmon",
+      "id": "a2c34b34-f848-43e8-bf19-21f87d9b9c76",
+      "name": "miso salmon",
       "ingredients": [
-        "Salmon",
-        "Miso"
+        "miso",
+        "salmon",
+        "soy sauce",
+        "mirin",
+        "sesame oil"
       ]
     }
   ]

@@ -16,21 +16,21 @@ const AddIngredientPage = () => {
     *   Source URL: https://medium.com/weekly-webtips/use-react-with-json-server-and-create-simple-crud-app-b2bf58cd4558 
     */
     function addIngredient(name, quantity, expirationDate) {
-        const ingredientID = uuidv4();
+        const id = uuidv4();
 
         fetch("http://localhost:8000/ingredients", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ingredientID, name, quantity, expirationDate}),
+            body: JSON.stringify({id, name, quantity, expirationDate}),
         })
         .then(response => response.json())
         .then(() => {
             setShowModal(true);
             setTimeout(() => {
                 redirect('/pantry');
-            }, 3000); 
+            }, 2500); 
         })
     }
 
@@ -55,7 +55,7 @@ const AddIngredientPage = () => {
                     <label for="name">Name:</label>
                     <input 
                         type="text" 
-                        placeholder="Name of ingredient"
+                        placeholder="Enter Ingredient Name"
                         value={name} 
                         id="name"
                         onChange={e => setName(e.target.value)}
@@ -63,7 +63,7 @@ const AddIngredientPage = () => {
                     <label for="quantity">Quantity:</label>
                     <input 
                         type="number" 
-                        placeholder="nice"
+                        placeholder="1"
                         value={quantity} 
                         id="quantity"
                         onChange={e => setQuantity(e.target.value)}/>
