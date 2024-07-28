@@ -1,0 +1,21 @@
+{
+  "ingredients": [
+    {
+      "id": "c974",
+      "ingredientID": "93de7bdd-3176-4772-a62b-3eabc2534b9b",
+      "name": "test",
+      "quantity": "100",
+      "expirationDate": "2024-07-27"
+    }
+  ],
+  "recipes": [
+    {
+      "id": "1",
+      "name": "Miso Salmon",
+      "ingredients": [
+        "Salmon",
+        "Miso"
+      ]
+    }
+  ]
+}

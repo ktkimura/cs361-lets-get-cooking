@@ -11,6 +11,8 @@ import HomePage from './pages/HomePage';
 import RecipesPage from './pages/RecipesPage';
 import PantryPage from './pages/PantryPage';
 import HelpPage from './pages/HelpPage';
+import AddIngredientPage from './pages/AddIngredientPage';
+import EditIngredientPage from './pages/EditIngredientPage';
 
 
 function App() {
@@ -23,11 +25,15 @@ function App() {
         <Navigation />
         <main>
           <section>
+            {/* Navigation bar displayed on every page */}
             <Routes>
               <Route path="/" element={<HomePage />}></Route>
               <Route path="/recipes" element={<RecipesPage />}></Route>
               <Route path="/pantry" element={<PantryPage />}></Route>
               <Route path="/help" element={<HelpPage />}></Route>
+
+              <Route path="/addIngredient" element={<AddIngredientPage />}></Route>
+              <Route path="/editIngredient/:id" element={<EditIngredientPage />}></Route>
             </Routes>
           </section>
         </main>
