@@ -59,7 +59,7 @@ function PantryPage(){
                         <td>{ingredient.quantity}</td>
                         <td>{ingredient.expirationDate}</td>
                         <td>
-                            /* each row in table has its own edit and delete button that will auto-populate with that row's ingredient data */
+                            {/* each row in table has its own edit and delete button that will auto-populate with that row's ingredient data */}
                             <Link to={`/editIngredient/${ingredient.id}`} class="btn">Edit</Link>
                             <button onClick={() => deleteIngredient(ingredient.id)}>Delete</button> 
                         </td>
