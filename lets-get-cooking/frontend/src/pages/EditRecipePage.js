@@ -92,7 +92,7 @@ const EditRecipePage = () => {
                         id="instructions"
                         onChange={e => setInstructions(e.target.value)}/>
                     <button type="submit">Save Changes</button>
-                    <Link to="/pantry" class="btn">Return to Pantry</Link>
+                    <Link to="/pantry" class="btn">Return to Recipes</Link>
                 </form>
             </div>
         </div>

@@ -1,9 +1,12 @@
+
+/* make Link elements appear as buttons */
 a.btn {
     text-decoration: none;
     padding: 0.5rem;
     border: 1px solid #333333;
   }
 
+/* for add, edit, and delete confirmation */
 .modal {
   display: flex;
   align-items: center;

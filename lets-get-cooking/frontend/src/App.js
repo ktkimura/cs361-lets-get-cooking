@@ -13,6 +13,7 @@ import PantryPage from './pages/PantryPage';
 import HelpPage from './pages/HelpPage';
 import AddIngredientPage from './pages/AddIngredientPage';
 import EditIngredientPage from './pages/EditIngredientPage';
+import ViewRecipePage from './pages/ViewRecipePage';
 import AddRecipePage from './pages/AddRecipePage';
 import EditRecipePage from './pages/EditRecipePage';
 
@@ -27,7 +28,6 @@ function App() {
         <Navigation />
         <main>
           <section>
-            {/* Navigation bar displayed on every page */}
             <Routes>
               <Route path="/" element={<HomePage />}></Route>
               <Route path="/recipes" element={<RecipesPage />}></Route>
@@ -36,6 +36,7 @@ function App() {
 
               <Route path="/addIngredient" element={<AddIngredientPage />}></Route>
               <Route path="/editIngredient/:id" element={<EditIngredientPage />}></Route>
+              <Route path="/viewRecipe/:id" element={<ViewRecipePage />}></Route>
               <Route path="/addRecipe" element={<AddRecipePage />}></Route>
               <Route path="/editRecipe/:id" element={<EditRecipePage />}></Route>
             </Routes>

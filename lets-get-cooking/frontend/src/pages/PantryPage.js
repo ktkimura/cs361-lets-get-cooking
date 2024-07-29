@@ -3,11 +3,10 @@ import { Link } from 'react-router-dom';
 
 function PantryPage(){
 
-    const [ingredients, setIngredients]                 = useState([]);
-    // eslint-disable-next-line
-    const [loading, setLoading]                         = useState(false)
-    const [showModal, setShowModal]                     = useState(false);
-    const [selectedIngredient, setSelectedIngredient]   = useState(null);
+    const [ingredients, setIngredients]                     = useState([]);
+    const [showDeleteModal, setShowDeleteModal]             = useState(false);
+    const [showDeleteDoneModal, setShowDeleteDoneModal]     = useState(false);
+    const [selectedIngredient, setSelectedIngredient]       = useState(null);
 
     /*  Citation for getIngredients() and deleteIngredients() functions: 
     *   Date: 07/27/2024
@@ -15,11 +14,9 @@ function PantryPage(){
     *   Source URL: https://medium.com/weekly-webtips/use-react-with-json-server-and-create-simple-crud-app-b2bf58cd4558 
     */
     function getIngredients() {
-        setLoading(true);
         fetch("http://localhost:8000/ingredients")
             .then(res => res.json())
             .then(result => {
-                setLoading(false);
                 setIngredients(result);
             })
     }
@@ -29,13 +26,14 @@ function PantryPage(){
             method: 'DELETE',
         }).then(() => {
             getIngredients();
-            setShowModal(false);
+            setShowDeleteModal(false);
+            setShowDeleteDoneModal(true);
         });
     }
     
     function handleDeleteClick(ingredient) {
         setSelectedIngredient(ingredient);
-        setShowModal(true);
+        setShowDeleteModal(true);
     }
 
     function handleConfirmDelete() {
@@ -77,13 +75,22 @@ function PantryPage(){
                 ))}
             </tbody>
         </table>
-        {showModal && (
-            <div className="modal">
-                <div className="modal-content">
+        {showDeleteModal && (
+            <div class="modal">
+                <div class="modal-content">
                     <h3>Are you sure you want to delete this ingredient?</h3>
                     <p>This action will permanently remove {selectedIngredient?.name} from your pantry!</p>
                     <button onClick={handleConfirmDelete}>Confirm</button>
-                    <button onClick={() => setShowModal(false)}>Cancel</button>
+                    <button onClick={() => setShowDeleteModal(false)}>Cancel</button>
+                </div>
+            </div>
+        )}
+        {showDeleteDoneModal && (
+            <div class="modal">
+                <div class="modal-content">
+                    <h3>Ingredient Deleted!</h3>
+                    <p>The ingredient has been removed from your pantry.</p>
+                    <button onClick={() => setShowDeleteDoneModal(false)} align="center">Close</button>
                 </div>
             </div>
         )}
