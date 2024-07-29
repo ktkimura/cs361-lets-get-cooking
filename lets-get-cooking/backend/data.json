@@ -16,14 +16,15 @@
   "recipes": [
     {
       "id": "a2c34b34-f848-43e8-bf19-21f87d9b9c76",
-      "name": "miso salmon",
+      "name": "miso salmon 2",
       "ingredients": [
         "miso",
         "salmon",
         "soy sauce",
         "mirin",
         "sesame oil"
-      ]
+      ],
+      "instructions": "1. blah blah 2. blah blah 3. hahahaha"
     }
   ]
 }

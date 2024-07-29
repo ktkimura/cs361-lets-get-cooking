@@ -3,9 +3,10 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 
 const EditRecipePage = () => {
     const { id } = useParams();
-    const [name, setName]                           = useState('');
-    const [ingredients, setIngredients]             = useState('');
-    const [showModal, setShowModal]                 = useState(false);
+    const [name, setName]                   = useState('');
+    const [ingredients, setIngredients]     = useState('');
+    const [instructions, setInstructions]   = useState('');
+    const [showModal, setShowModal]         = useState(false);
 
 
     const redirect = useNavigate('/recipes');
@@ -16,6 +17,7 @@ const EditRecipePage = () => {
             .then(data => {
                 setName(data.name);
                 setIngredients(data.ingredients);
+                setInstructions(data.instructions);
             })
     }, [id]);
 
@@ -24,15 +26,24 @@ const EditRecipePage = () => {
     *   Adapted From: "CRUD App with React And JSON-Server" by Gohit Varanasi. Adapted functions to match context of my backend (recipe data).
     *   Source URL: https://medium.com/weekly-webtips/use-react-with-json-server-and-create-simple-crud-app-b2bf58cd4558 
     */
-    function editRecipe(name, ingredients) {
-        let ingredientsArr = ingredients.split(',').map(ingredient => ingredient.trim());
+    function editRecipe(name, ingredients, instructions) {
+        
+        let ingredientsArr = [];
+        
+        if (typeof ingredients === 'string') {
+            ingredientsArr = ingredients.split(',').map(ingredient => ingredient.trim());
+        } 
+        else if (Array.isArray(ingredients)) {
+            ingredientsArr = ingredients;
+        }
+
 
         fetch(`http://localhost:8000/recipes/${id}`, {
             method: "PATCH", 
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ name, ingredients: ingredientsArr}),
+            body: JSON.stringify({ name, ingredients: ingredientsArr, instructions}),
         })
         .then(response => response.json())
         .then(() => {
@@ -45,7 +56,7 @@ const EditRecipePage = () => {
 
     function handleSubmit(e) {
         e.preventDefault();
-        editRecipe(name, ingredients);
+        editRecipe(name, ingredients, instructions);
     }
 
     return (
@@ -74,6 +85,12 @@ const EditRecipePage = () => {
                         value={ingredients} 
                         id="ingredients"
                         onChange={e => setIngredients(e.target.value)}/>
+                    <label for="instructions">Instructions:</label>
+                    <input 
+                        type="textarea" 
+                        value={instructions} 
+                        id="instructions"
+                        onChange={e => setInstructions(e.target.value)}/>
                     <button type="submit">Save Changes</button>
                     <Link to="/pantry" class="btn">Return to Pantry</Link>
                 </form>

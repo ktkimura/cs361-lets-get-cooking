@@ -3,9 +3,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 
 const AddRecipePage = () => {
-    const [name, setName]               = useState('');
-    const [ingredients, setIngredients] = useState('');
-    const [showModal, setShowModal]     = useState(false);
+    const [name, setName]                   = useState('');
+    const [ingredients, setIngredients]     = useState('');
+    const [instructions, setInstructions]   = useState('');
+    const [showModal, setShowModal]         = useState(false);
 
     const redirect = useNavigate('/recipes');
 
@@ -14,7 +15,7 @@ const AddRecipePage = () => {
     *   Adapted From: "CRUD App with React And JSON-Server" by Gohit Varanasi. Adapted functions to match context of my backend (recipe data).
     *   Source URL: https://medium.com/weekly-webtips/use-react-with-json-server-and-create-simple-crud-app-b2bf58cd4558 
     */
-    function addRecipe(name, ingredients) {
+    function addRecipe(name, ingredients, instructions) {
         const id = uuidv4();
         
         // convert user input into JSON array by separating elements by comma (,) and trimming any additional whitespace
@@ -25,7 +26,7 @@ const AddRecipePage = () => {
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({id, name, ingredients: ingredientsArr}),
+            body: JSON.stringify({id, name, ingredients: ingredientsArr, instructions}),
         })
         .then(response => response.json())
         .then(() => {
@@ -38,7 +39,7 @@ const AddRecipePage = () => {
 
     function handleSubmit(e){
         e.preventDefault();
-        addRecipe(name, ingredients);
+        addRecipe(name, ingredients, instructions);
     }
 
     return (
@@ -53,6 +54,12 @@ const AddRecipePage = () => {
                         </div>
                     </div>
                 )}
+                <div id="manualRecipeInput">
+
+                </div>
+                <div id="linkRecipeInput">
+
+                </div>
                 <form onSubmit={handleSubmit}>
                     <label for="name">Name:</label>
                     <input 
@@ -69,6 +76,13 @@ const AddRecipePage = () => {
                         value={ingredients} 
                         id="ingredients"
                         onChange={e => setIngredients(e.target.value)}/>
+                    <label for="instructions">Instructions:</label>
+                    <input 
+                        type="textarea" 
+                        placeholder="Enter instructions"
+                        value={instructions} 
+                        id="instructions"
+                        onChange={e => setInstructions(e.target.value)}/>
                     <button type="submit">Submit</button>
                     <Link to="/recipes" class="btn">Return to Recipes</Link>
                 </form>
