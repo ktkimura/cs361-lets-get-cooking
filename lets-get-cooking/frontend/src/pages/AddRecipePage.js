@@ -6,7 +6,7 @@ const AddRecipePage = () => {
     const [name, setName]                   = useState('');
     const [ingredients, setIngredients]     = useState('');
     const [instructions, setInstructions]   = useState('');
-    const [recipeLink, setRecipeLink]       = useState('');
+    // const [recipeLink, setRecipeLink]       = useState('');
     const [showModal, setShowModal]         = useState(false);
 
     const redirect = useNavigate('/recipes');
@@ -43,20 +43,20 @@ const AddRecipePage = () => {
         addRecipeManual(name, ingredients, instructions);
     }
 
-    function addRecipeLink(link) {
-        console.log(link);
-        // add recipe scraper stuff here
-    }
+    // function addRecipeLink(link) {
+    //     console.log(link);
+    //     // add recipe scraper stuff here
+    // }
 
-    function handleLinkSubmit(e) {
-        e.preventDefault();
-        addRecipeLink(recipeLink);
-    }
+    // function handleLinkSubmit(e) {
+    //     e.preventDefault();
+    //     addRecipeLink(recipeLink);
+    // }
 
     return (
         <div>
             <h3>Add Recipe</h3>
-            <p>Please use the tabs below to select your desired input type.</p>
+            {/* <p>Please use the tabs below to select your desired input type.</p> */}
             <div>
                 {showModal && (
                     <div class="modal">
@@ -66,13 +66,7 @@ const AddRecipePage = () => {
                         </div>
                     </div>
                 )}
-                <div class="tab">
-                    <button class="tabLink" onClick="">Manual</button>
-                    <button class="tabLink" onClick="">Hyperlink</button>
-                </div>
-                {/* form for manual recipe input */}
-                <div class="tabContent" id="manualRecipeInput">
-                    <form onSubmit={handleManualSubmit}>
+                <form onSubmit={handleManualSubmit}>
                         <label for="name">Name:</label>
                         <input 
                             type="text" 
@@ -87,6 +81,7 @@ const AddRecipePage = () => {
                             placeholder="Enter ingredients separated by commas"
                             value={ingredients} 
                             id="ingredients"
+                            class="textArea"
                             onChange={e => setIngredients(e.target.value)}/>
                         <label for="instructions">Instructions:</label>
                         <input 
@@ -94,26 +89,11 @@ const AddRecipePage = () => {
                             placeholder="Enter instructions"
                             value={instructions} 
                             id="instructions"
+                            class="textArea"
                             onChange={e => setInstructions(e.target.value)}/>
                         <button type="submit">Submit</button>
                         <Link to="/recipes" class="btn">Return to Recipes</Link>
-                    </form>
-                </div>
-                {/* form for hyperlink recipe input */}
-                <div class="tabContent" id="linkRecipeInput">
-                    <form onSubmit={handleLinkSubmit}>
-                        <label for="recipeLink">Name:</label>
-                        <input 
-                            type="text" 
-                            placeholder="Hyperlink to recipe posting"
-                            value={recipeLink} 
-                            id="recipeLink"
-                            onChange={e => setRecipeLink(e.target.value)}
-                            required/>
-                        <button type="submit">Submit</button>
-                        <Link to="/recipes" class="btn">Return to Recipes</Link>
-                    </form>
-                </div>
+                </form>
             </div>
         </div>
     )

@@ -84,12 +84,14 @@ const EditRecipePage = () => {
                         type="textarea" 
                         value={ingredients} 
                         id="ingredients"
+                        class="textArea"
                         onChange={e => setIngredients(e.target.value)}/>
                     <label for="instructions">Instructions:</label>
                     <input 
                         type="textarea" 
                         value={instructions} 
                         id="instructions"
+                        class="textArea"
                         onChange={e => setInstructions(e.target.value)}/>
                     <button type="submit">Save Changes</button>
                     <Link to="/recipes" class="btn">Return to Recipes</Link>

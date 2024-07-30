@@ -76,7 +76,8 @@ const EditIngredientPage = () => {
                         onChange={e => setQuantity(e.target.value)}/>
                     <label for="expDate">Expiration Date:</label>
                     <input 
-                        type="text" 
+                        type="date" 
+                        min="2024-07-29"
                         value={expirationDate} 
                         id="expDate"
                         onChange={e => setExpirationDate(e.target.value)}/>
