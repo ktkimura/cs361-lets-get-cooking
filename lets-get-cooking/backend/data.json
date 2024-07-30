@@ -13,29 +13,24 @@
       "expirationDate": "2024-10-10"
     },
     {
-      "id": "4c5acfab-6296-4ec5-91e7-65766a475b42",
+      "id": "cf66416d-18e3-4a76-825f-214005e52e20",
       "name": "onion",
-      "quantity": "2",
+      "quantity": "2 large",
       "expirationDate": "2024-07-31"
-    },
-    {
-      "id": "e12696ae-1b19-4854-9415-a08f368ade13",
-      "name": "bananas",
-      "quantity": "2 medium",
-      "expirationDate": "2024-07-30"
     }
   ],
   "recipes": [
     {
-      "id": "d8a888e0-ff45-4bd9-8998-ed47f44924fa",
+      "id": "555c6177-6d1a-4f5f-81e9-202004cb415d",
       "name": "miso salmon",
       "ingredients": [
-        "miso",
         "salmon",
+        "miso paste",
         "soy sauce",
-        "mirin"
+        "mirin",
+        "sesame oil"
       ],
-      "instructions": "1. marinate for 20 minutes 2. bake at 350 for 30 minutes"
+      "instructions": "1. combine all ingredients to make marinade 2. marinade salmon overnight 3. bake at 350F for 30 minutes"
     }
   ]
 }
