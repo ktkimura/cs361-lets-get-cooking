@@ -11,6 +11,18 @@
       "name": "soy sauce",
       "quantity": "20 oz",
       "expirationDate": "2024-10-10"
+    },
+    {
+      "id": "4c5acfab-6296-4ec5-91e7-65766a475b42",
+      "name": "onion",
+      "quantity": "2",
+      "expirationDate": "2024-07-31"
+    },
+    {
+      "id": "e12696ae-1b19-4854-9415-a08f368ade13",
+      "name": "bananas",
+      "quantity": "2 medium",
+      "expirationDate": "2024-07-30"
     }
   ],
   "recipes": [

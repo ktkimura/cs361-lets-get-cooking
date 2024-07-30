@@ -60,7 +60,7 @@ function ViewRecipePage(){
                     <tr>
                         <th>Recipe Name</th>
                         <th>Ingredients</th>
-                        <th>Actions</th>
+                        <th>Instructions</th>
                     </tr>
                 </thead>
                 <tbody>
