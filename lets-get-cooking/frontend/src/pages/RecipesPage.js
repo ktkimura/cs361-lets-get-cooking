@@ -65,7 +65,8 @@ function RecipesPage(){
                         <td><Link to={`/viewRecipe/${recipe.id}`}>{recipe.name}</Link></td>
                         <td>{recipe.ingredients.join(', ')}</td>
                         <td>
-                            {/* each row in table has its own edit and delete button that will auto-populate with that row's recipe data */}
+                            {/* each row in table has its own view, edit, and delete button that will auto-populate with that row's recipe data */}
+                            <Link to={`/viewRecipe/${recipe.id}`} class="btn">View</Link>
                             <Link to={`/editRecipe/${recipe.id}`} class="btn">Edit</Link>
                             <button onClick={() => handleDeleteClick(recipe)}>Delete</button> 
                         </td>

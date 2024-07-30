@@ -70,7 +70,7 @@ const EditIngredientPage = () => {
                         required/>
                     <label for="quantity">Quantity:</label>
                     <input 
-                        type="number" 
+                        type="text" 
                         value={quantity} 
                         id="quantity"
                         onChange={e => setQuantity(e.target.value)}/>

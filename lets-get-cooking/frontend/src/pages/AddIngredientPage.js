@@ -62,8 +62,8 @@ const AddIngredientPage = () => {
                         required/>
                     <label for="quantity">Quantity:</label>
                     <input 
-                        type="number" 
-                        placeholder="1"
+                        type="text" 
+                        placeholder="1 cup"
                         value={quantity} 
                         id="quantity"
                         onChange={e => setQuantity(e.target.value)}/>

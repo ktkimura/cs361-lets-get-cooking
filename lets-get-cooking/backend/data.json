@@ -5,7 +5,25 @@
       "name": "apples",
       "quantity": "3",
       "expirationDate": "2024-07-31"
+    },
+    {
+      "id": "f1a1b31d-6a34-4560-9c7c-c779480f5e37",
+      "name": "soy sauce",
+      "quantity": "20 oz",
+      "expirationDate": "2024-10-10"
     }
   ],
-  "recipes": []
+  "recipes": [
+    {
+      "id": "d8a888e0-ff45-4bd9-8998-ed47f44924fa",
+      "name": "miso salmon",
+      "ingredients": [
+        "miso",
+        "salmon",
+        "soy sauce",
+        "mirin"
+      ],
+      "instructions": "1. marinate for 20 minutes 2. bake at 350 for 30 minutes"
+    }
+  ]
 }

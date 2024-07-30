@@ -6,6 +6,11 @@ a.btn {
     border: 1px solid #333333;
   }
 
+a.navBar {
+    margin: auto;
+    padding: 0.5rem;
+}
+
 /* for add, edit, and delete confirmation */
 .modal {
   display: flex;
