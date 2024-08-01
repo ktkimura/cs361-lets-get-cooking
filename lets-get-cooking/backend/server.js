@@ -14,6 +14,7 @@ app.listen(port, () => {
     console.log(`App listening on port ${port}`)
 });
 
+// Ingredient-related Routing
 app.get("/pantry", (req, res) => {
     fs.readFile(dataFilePath, 'utf-8', function (err,data) {
         if (err) {
@@ -60,23 +61,6 @@ app.get("/editIngredient/:id", (req, res) => {
     });
 });
 
-app.delete("/deleteIngredient/:id", (req, res) => {
-    const ingredientID = req.params.id;
-
-    fs.readFile(dataFilePath, 'utf-8', (err, data) => {
-        let jsonData = JSON.parse(data);
-        jsonData.ingredients = jsonData.ingredients.filter(ingredient => ingredient.id !== ingredientID);
-
-        fs.writeFile(dataFilePath, JSON.stringify(jsonData, null, 2), function (err) {
-            if (err) {
-                console.error(err);
-            }
-            console.log("Successfully deleted ingredient!");
-            res.status(200).json(jsonData.ingredients);
-        });
-    });
-});
-
 app.put("/editIngredient/:id", (req, res) => {
     const updatedIngredient = {
         id: req.params.id,     //dynamically grab the requested ingredient ID from the URL
@@ -103,6 +87,24 @@ app.put("/editIngredient/:id", (req, res) => {
     res.status(200).json({ message: 'Ingredient updated successfully', ingredient: updatedIngredient });
 });
 
+app.delete("/deleteIngredient/:id", (req, res) => {
+    const ingredientID = req.params.id;
+
+    fs.readFile(dataFilePath, 'utf-8', (err, data) => {
+        let jsonData = JSON.parse(data);
+        jsonData.ingredients = jsonData.ingredients.filter(ingredient => ingredient.id !== ingredientID);
+
+        fs.writeFile(dataFilePath, JSON.stringify(jsonData, null, 2), function (err) {
+            if (err) {
+                console.error(err);
+            }
+            console.log("Successfully deleted ingredient!");
+            res.status(200).json(jsonData.ingredients);
+        });
+    });
+});
+
+// Recipe-related Routing
 app.get("/recipes", (req, res) => {
     fs.readFile(dataFilePath, 'utf-8', function(err,data) {
         if (err) {
@@ -114,5 +116,92 @@ app.get("/recipes", (req, res) => {
             res.json(recipes);
         }
     })
+});
+
+app.get("/viewRecipe/:id", (req, res) => {
+    const recipeID = req.params.id;
+
+    fs.readFile(dataFilePath, 'utf-8', function (err, data) {
+        let jsonData = JSON.parse(data);
+        const recipeToView = jsonData.recipes.find(recipe => recipe.id === recipeID);
+        console.log(recipeToView);
+        res.status(200).json(recipeToView);
+    })
+});
+
+app.post("/addRecipe", (req, res) => {
+    const newRecipe = {
+        id: uuidv4(),
+        name: req.body.name,
+        ingredients: req.body.ingredients,
+        instructions: req.body.instructions,
+    };
+
+    fs.readFile(dataFilePath, 'utf-8', function (err, data) {
+        let jsonData = JSON.parse(data);
+        jsonData.recipes.push(newRecipe);
+    
+        fs.writeFile(dataFilePath, JSON.stringify(jsonData, null, 2), function (err) {
+            if (err) {
+                console.error(err);
+            } 
+            else {
+                console.log(`${newRecipe.name} was added to the database!`)
+            }
+        })
+    })
+    res.status(200).json({ message: 'Recipe added successfully', recipe: newRecipe });
+});
+
+app.get("/editRecipe/:id", (req, res) => {
+    fs.readFile(dataFilePath, 'utf-8', (err, data) => {
+        let jsonData = JSON.parse(data);
+        const recipeToEdit = jsonData.recipes.find(recipe => recipe.id === req.params.id);
+
+        res.status(200).json(recipeToEdit);
+    });
+});
+
+app.put("/editRecipe/:id", (req, res) => {
+    const updatedRecipe = {
+        id: req.params.id,     //dynamically grab the requested ingredient ID from the URL
+        name: req.body.name,
+        ingredients: req.body.ingredients,
+        instructions: req.body.instructions,
+    };
+
+    fs.readFile(dataFilePath, 'utf-8', function (err, data) {
+        let jsonData = JSON.parse(data);
+        
+        const recipeIdx = jsonData.recipes.findIndex(recipe => recipe.id === updatedRecipe.id);     
+        jsonData.recipes[recipeIdx] = updatedRecipe;
+
+        fs.writeFile(dataFilePath, JSON.stringify(jsonData, null, 2), function (err) {
+            if (err) {
+                console.error(err);
+            }
+            else{
+                console.log(`${updatedRecipe.name} was updated!`)
+            }
+        })
+    });
+    res.status(200).json({ message: 'Recipe updated successfully', recipe: updatedRecipe });
+});
+
+app.delete("/deleteRecipe/:id", (req, res) => {
+    const recipeID = req.params.id;
+
+    fs.readFile(dataFilePath, 'utf-8', (err, data) => {
+        let jsonData = JSON.parse(data);
+        jsonData.recipes = jsonData.recipes.filter(recipe => recipe.id !== recipeID);
+
+        fs.writeFile(dataFilePath, JSON.stringify(jsonData, null, 2), function (err) {
+            if (err) {
+                console.error(err);
+            }
+            console.log("Successfully deleted recipe!");
+            res.status(200).json(jsonData.recipes);
+        });
+    });
 });
 

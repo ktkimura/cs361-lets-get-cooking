@@ -23,12 +23,13 @@ function RecipesPage(){
     }
 
     function deleteRecipe(id) {
-        fetch(`http://localhost:8000/recipes/${id}`, {
+        fetch("/deleteRecipe/" + id, {
             method: 'DELETE',
-        }).then(() => {
-            getRecipes();
-            setShowDeleteModal(false);
-            setShowDeleteDoneModal(true);
+        })
+            .then(() => {
+                getRecipes();
+                setShowDeleteModal(false);
+                setShowDeleteDoneModal(true);
         });
     }
     
@@ -44,7 +45,7 @@ function RecipesPage(){
 
     useEffect(() => {
         getRecipes();
-    })
+    }, [])
 
 
     return(

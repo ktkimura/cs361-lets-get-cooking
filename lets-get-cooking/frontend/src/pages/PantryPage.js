@@ -8,11 +8,6 @@ function PantryPage(){
     const [showDeleteDoneModal, setShowDeleteDoneModal]     = useState(false);
     const [selectedIngredient, setSelectedIngredient]       = useState(null);
 
-    /*  Citation for getIngredients() and deleteIngredients() functions: 
-    *   Date: 07/27/2024
-    *   Adapted From: "CRUD App with React And JSON-Server" by Gohit Varanasi. Adapted functions to match context of my backend (ingredient data).
-    *   Source URL: https://medium.com/weekly-webtips/use-react-with-json-server-and-create-simple-crud-app-b2bf58cd4558 
-    */
     function getIngredients() {
         fetch("/pantry")
             .then(response => response.json())
