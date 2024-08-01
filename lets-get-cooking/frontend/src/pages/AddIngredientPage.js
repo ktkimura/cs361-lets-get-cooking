@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { v4 as uuidv4 } from 'uuid';
 
 const AddIngredientPage = () => {
     const [name, setName]                       = useState('');
@@ -8,28 +7,21 @@ const AddIngredientPage = () => {
     const [expirationDate, setExpirationDate]   = useState('');
     const [showModal, setShowModal]             = useState(false);
 
-    const redirect = useNavigate('/pantry');
+    const navigate = useNavigate('/pantry');
 
-    /*  Citation for addIngredient() and handleSubmit() functions: 
-    *   Date: 07/27/2024
-    *   Adapted From: "CRUD App with React And JSON-Server" by Gohit Varanasi. Adapted functions to match context of my backend (ingredient data).
-    *   Source URL: https://medium.com/weekly-webtips/use-react-with-json-server-and-create-simple-crud-app-b2bf58cd4558 
-    */
     function addIngredient(name, quantity, expirationDate) {
-        const id = uuidv4();
-
-        fetch("http://localhost:8000/ingredients", {
+        fetch("/addIngredient", {
             method: "POST",
             headers: {
-                "Content-Type": "application/json",
+                "Content-Type": "application/json"
             },
-            body: JSON.stringify({id, name, quantity, expirationDate}),
+            body: JSON.stringify({ name, quantity, expirationDate }),
         })
         .then(response => response.json())
         .then(() => {
             setShowModal(true);
             setTimeout(() => {
-                redirect('/pantry');
+                navigate('/pantry');
             }, 2500); 
         })
     }

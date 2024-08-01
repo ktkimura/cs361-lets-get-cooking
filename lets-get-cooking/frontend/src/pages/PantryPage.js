@@ -14,21 +14,23 @@ function PantryPage(){
     *   Source URL: https://medium.com/weekly-webtips/use-react-with-json-server-and-create-simple-crud-app-b2bf58cd4558 
     */
     function getIngredients() {
-        fetch("http://localhost:8000/ingredients")
-            .then(res => res.json())
-            .then(result => {
-                setIngredients(result);
-            })
-    }
+        fetch("/pantry")
+            .then(response => response.json())
+            .then(data => {
+                setIngredients(data)
+                }
+            )
+    };
 
     function deleteIngredient(id) {
-        fetch(`http://localhost:8000/ingredients/${id}`, {
+        fetch("/deleteIngredient/" + id, {
             method: 'DELETE',
-        }).then(() => {
-            getIngredients();
-            setShowDeleteModal(false);
-            setShowDeleteDoneModal(true);
-        });
+        })
+            .then(() => {
+                getIngredients();
+                setShowDeleteModal(false);
+                setShowDeleteDoneModal(true);
+            });
     }
     
     function handleDeleteClick(ingredient) {
@@ -43,7 +45,7 @@ function PantryPage(){
 
     useEffect(() => {
         getIngredients();
-    })
+    }, []);
 
 
     return(

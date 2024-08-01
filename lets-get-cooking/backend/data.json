@@ -1,22 +1,16 @@
 {
   "ingredients": [
     {
-      "id": "c60c70ff-e772-44f1-918b-2526013c01cc",
+      "id": "a7461489-5190-4c13-b520-0ef6b01ef604",
       "name": "apples",
-      "quantity": "3",
-      "expirationDate": "2024-07-31"
+      "quantity": "2 small",
+      "expirationDate": "2024-08-08"
     },
     {
-      "id": "f1a1b31d-6a34-4560-9c7c-c779480f5e37",
-      "name": "soy sauce",
-      "quantity": "20 oz",
-      "expirationDate": "2024-10-10"
-    },
-    {
-      "id": "cf66416d-18e3-4a76-825f-214005e52e20",
-      "name": "onion",
-      "quantity": "2 large",
-      "expirationDate": "2024-07-31"
+      "id": "5eb281ea-8baa-4582-bae2-1677efc55af3",
+      "name": "salmon",
+      "quantity": "1",
+      "expirationDate": "2024-08-07"
     }
   ],
   "recipes": [
