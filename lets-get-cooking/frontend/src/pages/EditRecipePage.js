@@ -12,8 +12,8 @@ const EditRecipePage = () => {
     const redirect = useNavigate('/recipes');
 
     useEffect(() => {
-        fetch(`http://localhost:8000/recipes/${id}`)    //get specific recipe data to populate fields
-            .then(res => res.json())
+        fetch(`/editRecipe/${id}`)    //get specific recipe data to populate fields
+            .then(response => response.json())
             .then(data => {
                 setName(data.name);
                 setIngredients(data.ingredients);
@@ -21,13 +21,8 @@ const EditRecipePage = () => {
             })
     }, [id]);
 
-    /*  Citation for editRecipe() and handleSubmit() functions: 
-    *   Date: 07/28/2024
-    *   Adapted From: "CRUD App with React And JSON-Server" by Gohit Varanasi. Adapted functions to match context of my backend (recipe data).
-    *   Source URL: https://medium.com/weekly-webtips/use-react-with-json-server-and-create-simple-crud-app-b2bf58cd4558 
-    */
+
     function editRecipe(name, ingredients, instructions) {
-        
         let ingredientsArr = [];
         
         if (typeof ingredients === 'string') {
@@ -38,8 +33,8 @@ const EditRecipePage = () => {
         }
 
 
-        fetch(`http://localhost:8000/recipes/${id}`, {
-            method: "PATCH", 
+        fetch(`/editRecipe/${id}`, {
+            method: "PUT", 
             headers: {
                 "Content-Type": "application/json",
             },

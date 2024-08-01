@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { v4 as uuidv4 } from 'uuid';
 
 const AddRecipePage = () => {
     const [name, setName]                   = useState('');
@@ -11,23 +10,16 @@ const AddRecipePage = () => {
 
     const redirect = useNavigate('/recipes');
 
-    /*  Citation for addRecipe() and handleSubmit() functions: 
-    *   Date: 07/28/2024
-    *   Adapted From: "CRUD App with React And JSON-Server" by Gohit Varanasi. Adapted functions to match context of my backend (recipe data).
-    *   Source URL: https://medium.com/weekly-webtips/use-react-with-json-server-and-create-simple-crud-app-b2bf58cd4558 
-    */
     function addRecipeManual(name, ingredients, instructions) {
-        const id = uuidv4();
-        
         // convert user input into JSON array by separating elements by comma (,) and trimming any additional whitespace
         let ingredientsArr = ingredients.split(',').map(ingredient => ingredient.trim());
 
-        fetch("http://localhost:8000/recipes", {
+        fetch("/addRecipe", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({id, name, ingredients: ingredientsArr, instructions}),
+            body: JSON.stringify({name, ingredients: ingredientsArr, instructions}),
         })
         .then(response => response.json())
         .then(() => {

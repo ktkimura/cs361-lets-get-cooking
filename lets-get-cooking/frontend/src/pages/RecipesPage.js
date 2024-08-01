@@ -14,20 +14,22 @@ function RecipesPage(){
     *   Source URL: https://medium.com/weekly-webtips/use-react-with-json-server-and-create-simple-crud-app-b2bf58cd4558 
     */
     function getRecipes() {
-        fetch("http://localhost:8000/recipes")
-            .then(res => res.json())
-            .then(result => {
-                setRecipes(result);
-            })
+        fetch("/recipes")
+            .then(response => response.json())
+            .then(data => {
+                setRecipes(data)
+                }
+            )
     }
 
     function deleteRecipe(id) {
-        fetch(`http://localhost:8000/recipes/${id}`, {
+        fetch("/deleteRecipe/" + id, {
             method: 'DELETE',
-        }).then(() => {
-            getRecipes();
-            setShowDeleteModal(false);
-            setShowDeleteDoneModal(true);
+        })
+            .then(() => {
+                getRecipes();
+                setShowDeleteModal(false);
+                setShowDeleteDoneModal(true);
         });
     }
     
@@ -43,7 +45,7 @@ function RecipesPage(){
 
     useEffect(() => {
         getRecipes();
-    })
+    }, [])
 
 
     return(
