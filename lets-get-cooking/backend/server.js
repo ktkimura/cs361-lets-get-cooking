@@ -3,10 +3,13 @@ const app = express();
 const port = 8000;
 
 const fs = require('fs');
+const fsPromises = require('fs').promises;
 const path = require('path');
 const {v4: uuidv4} = require('uuid');
 
 const dataFilePath = path.join(__dirname, 'data.json');
+const compareFilePath = path.join(__dirname, 'ingredientCompare.json');
+const compareOutputFilePath = path.join(__dirname, 'ingredient.json');
 
 app.use(express.json());
 
@@ -22,7 +25,6 @@ app.get("/pantry", (req, res) => {
         } 
         const jsonData = JSON.parse(data);
         const ingredients = jsonData.ingredients;
-        console.log(ingredients);
         res.json(ingredients);
     });
 });
@@ -118,15 +120,33 @@ app.get("/recipes", (req, res) => {
     })
 });
 
-app.get("/viewRecipe/:id", (req, res) => {
+async function requestCompare(requestMsg) {
+    await fsPromises.writeFile(compareFilePath, JSON.stringify(requestMsg, null, 2));
+};
+
+async function receiveCompare() {
+    const data = await fsPromises.readFile(compareOutputFilePath, 'utf-8');
+    const jsonData = JSON.parse(data);
+    return [jsonData.outOfStock, jsonData.inStock];
+};
+
+app.get("/viewRecipe/:id", async (req, res) => {
     const recipeID = req.params.id;
 
-    fs.readFile(dataFilePath, 'utf-8', function (err, data) {
-        let jsonData = JSON.parse(data);
-        const recipeToView = jsonData.recipes.find(recipe => recipe.id === recipeID);
-        console.log(recipeToView);
-        res.status(200).json(recipeToView);
-    })
+    const data = await fsPromises.readFile(dataFilePath, 'utf-8');
+    let jsonData = JSON.parse(data);
+    const recipeToView = jsonData.recipes.find(recipe => recipe.id === recipeID);
+    const ingredientList = jsonData.ingredients;
+
+    let requestMsg = {
+        "ingredients" : ingredientList,
+        "recipe" : [recipeToView]
+    };
+
+    await requestCompare(requestMsg);
+    const receivedMsg = await receiveCompare();
+
+    res.status(200).json({ recipe: recipeToView, compareIngredient: receivedMsg });
 });
 
 app.post("/addRecipe", (req, res) => {

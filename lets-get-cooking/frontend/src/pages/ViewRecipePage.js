@@ -8,7 +8,8 @@ function ViewRecipePage(){
     const [instructions, setInstructions]                   = useState('');
     const [showDeleteModal, setShowDeleteModal]             = useState(false);
     const [showDeleteDoneModal, setShowDeleteDoneModal]     = useState(false);
-
+    const [inStock, setInStock]                             = useState('');
+    const [outOfStock, setOutOfStock]                       = useState('');
 
     const redirect = useNavigate();
 
@@ -16,9 +17,16 @@ function ViewRecipePage(){
         fetch(`/viewRecipe/${id}`)    //get specific recipe data to populate fields
             .then(response => response.json())
             .then(data => {
-                setName(data.name);
-                setIngredients(data.ingredients.join(', '));
-                setInstructions(data.instructions);
+                const {recipe, compareIngredient} = data;
+
+                // grab recipe data for displaying in HTML elements
+                setName(recipe.name);
+                setIngredients(recipe.ingredients.join(', '));
+                setInstructions(recipe.instructions);
+
+                // grab both arrays of ingredients to show user which ingredients they are missing for recipe
+                setOutOfStock(compareIngredient[0].join(', ') || []);
+                setInStock(compareIngredient[1].join(', ') || []);
             })
     }, [id]); // "[id]" denotes to only load once with the given id
 
@@ -47,25 +55,35 @@ function ViewRecipePage(){
     return(
         <>
             <h2>View Recipe</h2>
+            <p>Please refresh this page if you just recently added an ingredient.</p>
             <br></br>
-            <Link to={`/editRecipe/${id}`} class="btn">Edit</Link>
-            <button onClick={() => handleDeleteClick()}>Delete</button>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Recipe Name</th>
-                        <th>Ingredients</th>
-                        <th>Instructions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr key={id}>
-                    <td>{name}</td>
-                    <td>{ingredients}</td>
-                    <td>{instructions}</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div>
+                <Link to={`/editRecipe/${id}`} class="btn">Edit</Link>
+                <button onClick={() => handleDeleteClick()}>Delete</button>
+            </div>
+            <div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Recipe Name</th>
+                            <th>Ingredients</th>
+                            <th>Instructions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr key={id}>
+                        <td>{name}</td>
+                        <td>{ingredients}</td>
+                        <td>{instructions}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div>
+                    <h3>Ingredient Comparison</h3>
+                    <p><strong>Ingredients in stock: </strong>{inStock}</p>
+                    <p><strong>Missing ingredients: </strong>{outOfStock}</p>
+                </div>
+            </div>
             <Link to="/recipes" class="btn">Return to Recipes</Link>
 
         {showDeleteModal && (
