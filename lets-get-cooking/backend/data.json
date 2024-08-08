@@ -11,6 +11,30 @@
       "name": "salmon",
       "quantity": "1",
       "expirationDate": "2024-08-07"
+    },
+    {
+      "id": "bb976f03-2d40-449b-bf2b-ccd3e2d50a8c",
+      "name": "test ingredient",
+      "quantity": "2 cups",
+      "expirationDate": "2024-08-16"
+    },
+    {
+      "id": "24fa6dab-cc55-4e4f-b3b4-be662d0727e9",
+      "name": "miso",
+      "quantity": "1",
+      "expirationDate": "2024-08-28"
+    },
+    {
+      "id": "92529cbd-23d4-4aa1-90e9-ad22e1a5931f",
+      "name": "sesame oil",
+      "quantity": "12 oz",
+      "expirationDate": "2024-08-20"
+    },
+    {
+      "id": "f219a843-81fa-4b85-88ac-04f99133f8cf",
+      "name": "soy sauce",
+      "quantity": "8 oz",
+      "expirationDate": "2024-08-07"
     }
   ],
   "recipes": [

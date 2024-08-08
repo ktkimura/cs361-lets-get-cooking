@@ -1,0 +1,11 @@
+{
+    "outOfStock": [
+        "mirin"
+    ],
+    "inStock": [
+        "salmon",
+        "miso",
+        "soy sauce",
+        "sesame oil"
+    ]
+}
