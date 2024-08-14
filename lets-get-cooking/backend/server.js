@@ -8,8 +8,8 @@ const path = require('path');
 const {v4: uuidv4} = require('uuid');
 
 const dataFilePath = path.join(__dirname, 'data.json');
-const compareFilePath = path.join(__dirname, 'ingredientCompare.json');
-const compareOutputFilePath = path.join(__dirname, 'ingredient.json');
+const compareFilePath = path.join(__dirname, 'microA/ingredientCompare.json');
+const compareOutputFilePath = path.join(__dirname, 'microA/ingredient.json');
 
 app.use(express.json());
 
