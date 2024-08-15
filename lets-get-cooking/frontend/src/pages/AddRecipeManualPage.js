@@ -47,32 +47,45 @@ const AddRecipePage = () => {
                     </div>
                 )}
                 <form onSubmit={handleManualSubmit}>
-                        <label for="name">Name:</label>
-                        <input 
-                            type="text" 
-                            placeholder="Name of recipe"
-                            value={name} 
-                            id="name"
-                            onChange={e => setName(e.target.value)}
-                            required/>
-                        <label for="ingredients">Ingredients:</label>
-                        <input 
-                            type="textarea" 
-                            placeholder="Enter ingredients separated by commas"
-                            value={ingredients} 
-                            id="ingredients"
-                            class="textArea"
-                            onChange={e => setIngredients(e.target.value)}/>
-                        <label for="instructions">Instructions:</label>
-                        <input 
-                            type="textarea" 
-                            placeholder="Enter instructions"
-                            value={instructions} 
-                            id="instructions"
-                            class="textArea"
-                            onChange={e => setInstructions(e.target.value)}/>
-                        <button type="submit">Submit</button>
-                        <Link to="/recipes" class="btn">Return to Recipes</Link>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Recipe Name</th>
+                                <th>Ingredients</th>
+                                <th>Instructions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <textarea 
+                                        placeholder="Name of recipe"
+                                        value={name} 
+                                        id="name"
+                                        onChange={e => setName(e.target.value)}
+                                        required/>
+                                </td>
+                                <td>
+                                    <textarea 
+                                        placeholder="Enter ingredients separated by commas"
+                                        value={ingredients} 
+                                        id="ingredients"
+                                        className="textArea"
+                                        onChange={e => setIngredients(e.target.value)}/>
+                                </td>
+                                <td>
+                                    <textarea 
+                                        placeholder="Enter instructions"
+                                        value={instructions} 
+                                        id="instructions"
+                                        class="textArea"
+                                        onChange={e => setInstructions(e.target.value)}/>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button type="submit">Submit</button>
+                    <Link to="/recipes" class="btn">Return to Recipes</Link>
                 </form>
             </div>
         </div>

@@ -44,28 +44,42 @@ const AddIngredientPage = () => {
                     </div>
                 )}
                 <form onSubmit={handleSubmit}>
-                    <label for="name">Name:</label>
-                    <input 
-                        type="text" 
-                        placeholder="Enter Ingredient Name"
-                        value={name} 
-                        id="name"
-                        onChange={e => setName(e.target.value)}
-                        required/>
-                    <label for="quantity">Quantity:</label>
-                    <input 
-                        type="text" 
-                        placeholder="1 cup"
-                        value={quantity} 
-                        id="quantity"
-                        onChange={e => setQuantity(e.target.value)}/>
-                    <label for="expDate">Expiration Date:</label>
-                    <input 
-                        type="date" 
-                        min="2024-07-29"
-                        value={expirationDate} 
-                        id="expDate"
-                        onChange={e => setExpirationDate(e.target.value)}/>
+                    <table> 
+                        <thead>
+                            <tr>
+                                <th>Ingredient Name</th>
+                                <th>Quantity</th>
+                                <th>Expiration Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <textarea 
+                                        placeholder="Enter Ingredient Name"
+                                        value={name} 
+                                        id="name"
+                                        onChange={e => setName(e.target.value)}
+                                        required/>
+                                </td>
+                                <td>
+                                    <textarea 
+                                        placeholder="1 cup"
+                                        value={quantity} 
+                                        id="quantity"
+                                        onChange={e => setQuantity(e.target.value)}/>
+                                </td>
+                                <td>
+                                    <input 
+                                        type="date" 
+                                        min="2024-07-29"
+                                        value={expirationDate} 
+                                        id="expDate"
+                                        onChange={e => setExpirationDate(e.target.value)}/>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                     <button type="submit">Submit</button>
                     <Link to="/pantry" class="btn">Return to Pantry</Link>
                 </form>

@@ -29,7 +29,7 @@ const AddRecipePage = () => {
     return (
         <div>
             <h3>Add Recipe (Hyperlink)</h3>
-            <p>Please note that the website may currently struggle to handle fractions when grabbing recipe data from your provided hyperlink.</p>
+            <p>Please provide a valid hyperlink to a recipe that you want to add to your collection. Refer to the <Link to="/help">Help page</Link> for a list of valid website domains.</p>
             <div>
                 {showModal && (
                     <div class="modal">
