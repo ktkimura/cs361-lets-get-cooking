@@ -166,6 +166,10 @@ async function receiveRecipeDetails() {
     const data = await fsPromises.readFile(recipeLinkFilePath, 'utf-8');
     const jsonData = JSON.parse(data);
     console.log('Received JSON Data:', jsonData);
+
+    if (jsonData.error) {
+        res.status(400).json({ message: 'Recipe data could not be retrieved', error: jsonData.error })
+    }
     return [jsonData.name, jsonData.ingredients, jsonData.instructions];
 };
 
@@ -177,6 +181,7 @@ app.post("/addRecipeLink", async (req, res) => {
     await requestRecipeDetails(requestMsg)
     await sleep(1000); 
     const receivedMsg = await receiveRecipeDetails()
+    
 
     const newRecipe = {
         id: uuidv4(),

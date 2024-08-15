@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 const AddRecipePage = () => {
-    const [recipeLink, setRecipeLink]       = useState('');
-    const [showModal, setShowModal]         = useState(false);
-
+    const [recipeLink, setRecipeLink]               = useState('');
+    const [showConfirmModal, setShowConfirmModal]   = useState(false);
+    const [showErrorModal, setShowErrorModal]           = useState(false);
     const redirect = useNavigate('/recipes');
 
     function handleLinkSubmit(e){
@@ -18,11 +18,15 @@ const AddRecipePage = () => {
             body: JSON.stringify({recipeLink}),
         })
         .then(response => response.json())
-        .then(() => {
-            setShowModal(true);
-            setTimeout(() => {
+        .then(data => {
+            if (data.error) {
+                setShowErrorModal(true);
+            } else {
+                setShowConfirmModal(true);
+                setTimeout(() => {
                 redirect('/recipes');
             }, 2500); 
+            }
         })
     }
 
@@ -31,11 +35,19 @@ const AddRecipePage = () => {
             <h3>Add Recipe (Hyperlink)</h3>
             <p>Please provide a valid hyperlink to a recipe that you want to add to your collection. Refer to the <Link to="/help">Help page</Link> for a list of valid website domains.</p>
             <div>
-                {showModal && (
+                {showConfirmModal && (
                     <div class="modal">
                         <div class="modal-content">
                             <h3>Recipe Added!</h3>
                             <p>You will be automatically redirected to the Recipes page where the recipe should now display.</p>
+                        </div>
+                    </div>
+                )}
+                {showErrorModal && (
+                    <div class="modal">
+                        <div class="modal-content">
+                            <h3>Recipe data could not be retrieved</h3>
+                            <Link to="/addRecipeLink" class="btn" onClick={setShowErrorModal(false)}>Return to Add Recipe (Hyperlink) page</Link>
                         </div>
                     </div>
                 )}

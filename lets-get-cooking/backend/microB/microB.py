@@ -2,6 +2,7 @@ import json, time, os
 from recipe_scrapers import scrape_html
 
 commFilePath = 'commPipe.json'
+editOutputFilePath = './microC/commPipe.json'
 
 # check the edit times of the file to determine if change was made
 def fileChange(file):
@@ -32,6 +33,7 @@ def getRecipeDetails(recipeLink):
 
 while True:
     print("Awaiting input...")
+
     if fileChange(commFilePath) == 1:
         with open(commFilePath, 'r') as inputFile:
             # to give main program some time to write link to file
