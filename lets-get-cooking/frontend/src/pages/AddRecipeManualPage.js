@@ -5,7 +5,6 @@ const AddRecipePage = () => {
     const [name, setName]                   = useState('');
     const [ingredients, setIngredients]     = useState('');
     const [instructions, setInstructions]   = useState('');
-    // const [recipeLink, setRecipeLink]       = useState('');
     const [showModal, setShowModal]         = useState(false);
 
     const redirect = useNavigate('/recipes');
@@ -14,7 +13,7 @@ const AddRecipePage = () => {
         // convert user input into JSON array by separating elements by comma (,) and trimming any additional whitespace
         let ingredientsArr = ingredients.split(',').map(ingredient => ingredient.trim());
 
-        fetch("/addRecipe", {
+        fetch("/addRecipeManual", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -35,20 +34,9 @@ const AddRecipePage = () => {
         addRecipeManual(name, ingredients, instructions);
     }
 
-    // function addRecipeLink(link) {
-    //     console.log(link);
-    //     // add recipe scraper stuff here
-    // }
-
-    // function handleLinkSubmit(e) {
-    //     e.preventDefault();
-    //     addRecipeLink(recipeLink);
-    // }
-
     return (
         <div>
-            <h3>Add Recipe</h3>
-            {/* <p>Please use the tabs below to select your desired input type.</p> */}
+            <h3>Add Recipe (Manual)</h3>
             <div>
                 {showModal && (
                     <div class="modal">

@@ -52,7 +52,8 @@ function RecipesPage(){
         <>
             <h2>Recipes</h2>
             <br></br>
-            <Link to="/addRecipe" class="btn">Add Recipe</Link>
+            <Link to="/addRecipeManual" class="btn">Add Recipe (Manual)</Link>
+            <Link to="/addRecipeLink" class="btn">Add Recipe (Hyperlink)</Link>
             <table>
             <thead>
                 <tr>

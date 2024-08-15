@@ -14,7 +14,8 @@ import HelpPage from './pages/HelpPage';
 import AddIngredientPage from './pages/AddIngredientPage';
 import EditIngredientPage from './pages/EditIngredientPage';
 import ViewRecipePage from './pages/ViewRecipePage';
-import AddRecipePage from './pages/AddRecipePage';
+import AddRecipeManualPage from './pages/AddRecipeManualPage';
+import AddRecipeLinkPage from './pages/AddRecipeLinkPage';
 import EditRecipePage from './pages/EditRecipePage';
 
 
@@ -37,7 +38,8 @@ function App() {
               <Route path="/addIngredient" element={<AddIngredientPage />}></Route>
               <Route path="/editIngredient/:id" element={<EditIngredientPage />}></Route>
               <Route path="/viewRecipe/:id" element={<ViewRecipePage />}></Route>
-              <Route path="/addRecipe" element={<AddRecipePage />}></Route>
+              <Route path="/addRecipeManual" element={<AddRecipeManualPage />}></Route>
+              <Route path="/addRecipeLink" element={<AddRecipeLinkPage />}></Route>
               <Route path="/editRecipe/:id" element={<EditRecipePage />}></Route>
             </Routes>
           </section>

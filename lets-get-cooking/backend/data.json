@@ -49,6 +49,33 @@
         "sesame oil"
       ],
       "instructions": "1. combine all ingredients to make marinade 2. marinade salmon overnight 3. bake at 350F for 30 minutes"
+    },
+    {
+      "id": "0486c785-1ea0-4c1c-b46e-7b60b1030b02",
+      "name": "Good Old-Fashioned Pancakes",
+      "ingredients": [
+        "1 ½ cups all-purpose flour",
+        "3 ½ teaspoons baking powder",
+        "1 tablespoon white sugar",
+        "¼ teaspoon salt, or more to taste",
+        "1 ¼ cups milk",
+        "3 tablespoons butter, melted",
+        "1 egg"
+      ],
+      "instructions": "Sift flour, baking powder, sugar, and salt together in a large bowl. Make a well in the center and add milk, melted butter, and egg; mix until smooth.\nHeat a lightly oiled griddle or pan over medium-high heat. Pour or scoop the batter onto the griddle, using approximately 1/4 cup for each pancake; cook until bubbles form and the edges are dry, about 2 to 3 minutes. Flip and cook until browned on the other side. Repeat with remaining batter."
+    },
+    {
+      "id": "7b6d2a7e-483a-4047-a758-36ac67f972c0",
+      "name": "Delicious Egg Salad",
+      "ingredients": [
+        "8 large eggs",
+        "½ cup mayonnaise",
+        "¼ cup chopped green onion",
+        "1 teaspoon prepared yellow mustard",
+        "¼ teaspoon paprika",
+        "salt and pepper to taste"
+      ],
+      "instructions": "Place eggs in a saucepan and cover with cold water. Bring water to a boil and immediately remove from heat. Cover and let eggs stand in hot water for 10 to 12 minutes. Remove from hot water, cool, peel, and chop.\nPlace chopped eggs in a bowl; stir in mayonnaise, green onion, and mustard. Season with paprika, salt, and pepper. Stir and serve on your favorite bread, crackers, or salad greens."
     }
   ]
 }
