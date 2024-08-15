@@ -37,7 +37,7 @@ while True:
     if fileChange(commFilePath) == 1:
         with open(commFilePath, 'r') as inputFile:
             # to give main program some time to write link to file
-            time.sleep(1)
+            #time.sleep(1)
 
             # parse out the hyperlink
             fileData = json.load(inputFile)

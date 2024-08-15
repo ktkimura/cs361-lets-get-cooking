@@ -167,10 +167,7 @@ async function receiveRecipeDetails() {
     const jsonData = JSON.parse(data);
     console.log('Received JSON Data:', jsonData);
 
-    if (jsonData.error) {
-        res.status(400).json({ message: 'Recipe data could not be retrieved', error: jsonData.error })
-    }
-    return [jsonData.name, jsonData.ingredients, jsonData.instructions];
+    return jsonData;
 };
 
 app.post("/addRecipeLink", async (req, res) => {
@@ -179,24 +176,27 @@ app.post("/addRecipeLink", async (req, res) => {
     let requestMsg = { "link": recipeLink };
 
     await requestRecipeDetails(requestMsg)
-    await sleep(1000); 
+    await sleep(1500); 
     const receivedMsg = await receiveRecipeDetails()
     
-
-    const newRecipe = {
-        id: uuidv4(),
-        name: receivedMsg[0],
-        ingredients: receivedMsg[1],
-        instructions: receivedMsg[2],
-    };
-
-    const data = await fsPromises.readFile(dataFilePath, 'utf-8');
-    let currentData = JSON.parse(data);
-    currentData.recipes.push(newRecipe);
-
-    await fsPromises.writeFile(dataFilePath, JSON.stringify(currentData, null, 2));
-
-    res.status(200).json({ message: 'Recipe added successfully', recipe: newRecipe });
+    if (receivedMsg.error) {
+        res.status(400).json({ message: 'Recipe data could not be retrieved', error: receivedMsg.error })
+    } else {
+        const newRecipe = {
+            id: uuidv4(),
+            name: receivedMsg.name,
+            ingredients: receivedMsg.ingredients,
+            instructions: receivedMsg.instructions,
+        };
+    
+        const data = await fsPromises.readFile(dataFilePath, 'utf-8');
+        let currentData = JSON.parse(data);
+        currentData.recipes.push(newRecipe);
+    
+        await fsPromises.writeFile(dataFilePath, JSON.stringify(currentData, null, 2));
+    
+        res.status(200).json({ message: 'Recipe added successfully', recipe: newRecipe });
+    }
 }); 
 
 
