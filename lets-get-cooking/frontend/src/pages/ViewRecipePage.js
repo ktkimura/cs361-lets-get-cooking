@@ -27,6 +27,7 @@ function ViewRecipePage(){
                 // grab both arrays of ingredients to show user which ingredients they are missing for recipe
                 setOutOfStock(compareIngredient[0].join(', ') || []);
                 setInStock(compareIngredient[1].join(', ') || []);
+
             })
     }, [id]); // "[id]" denotes to only load once with the given id
 
@@ -55,7 +56,7 @@ function ViewRecipePage(){
     return(
         <>
             <h2>View Recipe</h2>
-            <p>Please refresh this page if you just recently added an ingredient.</p>
+            <strong>Please refresh this page if the ingredient comparison is incorrect!</strong>
             <br></br>
             <div>
                 <Link to={`/editRecipe/${id}`} class="btn">Edit</Link>

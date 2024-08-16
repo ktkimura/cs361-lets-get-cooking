@@ -1,8 +1,8 @@
 import json, time, os
 from recipe_scrapers import scrape_html
 
-commFilePath = 'commPipe.json'
-editOutputFilePath = './microC/commPipe.json'
+commFilePath = 'commPipeB.json'
+cleanupFilePath = '../microC/commPipeC.json'
 
 # check the edit times of the file to determine if change was made
 def fileChange(file):
@@ -11,6 +11,12 @@ def fileChange(file):
         newEditTime = os.path.getmtime(file)
         if lastEditTime != newEditTime:
             return 1
+
+
+def writeOutput(jsonData):
+    with open(cleanupFilePath, 'w') as outputFile:
+        json.dump(jsonData, outputFile, indent=4)
+        outputFile.close()
 
 
 def getRecipeDetails(recipeLink):
@@ -22,7 +28,13 @@ def getRecipeDetails(recipeLink):
         recipeInstruct = scraper.instructions()
 
         recipeObj = {"name":  recipeName,  "ingredients": recipeIngredients, "instructions": recipeInstruct}
-        return recipeObj
+        
+        writeOutput(recipeObj)
+        time.sleep(1)
+
+        with open(cleanupFilePath, 'r') as readFile:
+            recipeObj = json.load(readFile)
+            return recipeObj
     # if user input was invalid, pass back error to main program
     except:
         print("An error occurred with parsing the provided hyperlink")
@@ -37,7 +49,7 @@ while True:
     if fileChange(commFilePath) == 1:
         with open(commFilePath, 'r') as inputFile:
             # to give main program some time to write link to file
-            #time.sleep(1)
+            time.sleep(1)
 
             # parse out the hyperlink
             fileData = json.load(inputFile)
@@ -51,5 +63,5 @@ while True:
 
             outputFile.close()
 
-    print("commPipe.json was updated")
+    print("commPipeB.json was updated")
 

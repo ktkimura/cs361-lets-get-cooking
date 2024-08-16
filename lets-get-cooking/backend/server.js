@@ -17,7 +17,7 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
 const dataFilePath = path.join(__dirname, 'data.json');
 const compareFilePath = path.join(__dirname, 'microA/ingredientCompare.json');
 const compareOutputFilePath = path.join(__dirname, 'microA/ingredient.json');
-const recipeLinkFilePath = path.join(__dirname, 'microB/commPipe.json')
+const commPipeBFilePath = path.join(__dirname, 'microB/commPipeB.json');
 
 app.use(express.json());
 
@@ -159,11 +159,11 @@ app.get("/viewRecipe/:id", async (req, res) => {
 
 
 async function requestRecipeDetails(requestMsg) {
-    await fsPromises.writeFile(recipeLinkFilePath, JSON.stringify(requestMsg, null, 2));
+    await fsPromises.writeFile(commPipeBFilePath, JSON.stringify(requestMsg, null, 2));
 };
 
 async function receiveRecipeDetails() {
-    const data = await fsPromises.readFile(recipeLinkFilePath, 'utf-8');
+    const data = await fsPromises.readFile(commPipeBFilePath, 'utf-8');
     const jsonData = JSON.parse(data);
     console.log('Received JSON Data:', jsonData);
 
@@ -176,7 +176,7 @@ app.post("/addRecipeLink", async (req, res) => {
     let requestMsg = { "link": recipeLink };
 
     await requestRecipeDetails(requestMsg)
-    await sleep(1500); 
+    await sleep(5000); 
     const receivedMsg = await receiveRecipeDetails()
     
     if (receivedMsg.error) {
