@@ -37,19 +37,7 @@
       "expirationDate": "2024-08-16"
     }
   ],
-  "recipes": [
-    {
-      "id": "2919c07c-c16c-422b-85fb-ada4b029f7e1",
-      "name": "miso salmon",
-      "ingredients": [
-        "miso",
-        "salmon",
-        "soy sauce",
-        "mirin",
-        "sesame oil"
-      ],
-      "instructions": "1. combine all ingredients to make marinade 2. marinade salmon overnight 3. bake at 350F for 30 minutes"
-    },
+  "recipe": [
     {
       "id": "7b6d2a7e-483a-4047-a758-36ac67f972c0",
       "name": "Delicious Egg Salad",
@@ -62,20 +50,6 @@
         "salt and pepper to taste"
       ],
       "instructions": "Place eggs in a saucepan and cover with cold water. Bring water to a boil and immediately remove from heat. Cover and let eggs stand in hot water for 10 to 12 minutes. Remove from hot water, cool, peel, and chop.\nPlace chopped eggs in a bowl; stir in mayonnaise, green onion, and mustard. Season with paprika, salt, and pepper. Stir and serve on your favorite bread, crackers, or salad greens."
-    },
-    {
-      "id": "c0795d49-1a33-4b42-be37-b33ec4030570",
-      "name": "Good Old-Fashioned Pancakes",
-      "ingredients": [
-        "all-purpose flour",
-        "baking powder",
-        "white sugar",
-        "salt",
-        "milk",
-        "butter",
-        "egg"
-      ],
-      "instructions": "Sift flour, baking powder, sugar, and salt together in a large bowl. Make a well in the center and add milk, melted butter, and egg; mix until smooth.\nHeat a lightly oiled griddle or pan over medium-high heat. Pour or scoop the batter onto the griddle, using approximately 1/4 cup for each pancake; cook until bubbles form and the edges are dry, about 2 to 3 minutes. Flip and cook until browned on the other side. Repeat with remaining batter."
     }
   ]
 }

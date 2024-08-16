@@ -1,44 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
-const EditRecipePage = () => {
-    const { id } = useParams();
+const AddRecipePage = () => {
     const [name, setName]                   = useState('');
     const [ingredients, setIngredients]     = useState('');
     const [instructions, setInstructions]   = useState('');
     const [showModal, setShowModal]         = useState(false);
 
-
     const redirect = useNavigate('/recipes');
 
-    useEffect(() => {
-        fetch(`/editRecipe/${id}`)    //get specific recipe data to populate fields
-            .then(response => response.json())
-            .then(data => {
-                setName(data.name);
-                setIngredients(data.ingredients);
-                setInstructions(data.instructions);
-            })
-    }, [id]);
+    function addRecipeManual(name, ingredients, instructions) {
+        // convert user input into JSON array by separating elements by comma (,) and trimming any additional whitespace
+        let ingredientsArr = ingredients.split(',').map(ingredient => ingredient.trim());
 
-
-    function editRecipe(name, ingredients, instructions) {
-        let ingredientsArr = [];
-        
-        if (typeof ingredients === 'string') {
-            ingredientsArr = ingredients.split(',').map(ingredient => ingredient.trim());
-        } 
-        else if (Array.isArray(ingredients)) {
-            ingredientsArr = ingredients;
-        }
-
-
-        fetch(`/editRecipe/${id}`, {
-            method: "PUT", 
+        fetch("/addRecipeManual", {
+            method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ name, ingredients: ingredientsArr, instructions}),
+            body: JSON.stringify({name, ingredients: ingredientsArr, instructions}),
         })
         .then(response => response.json())
         .then(() => {
@@ -49,24 +29,24 @@ const EditRecipePage = () => {
         })
     }
 
-    function handleSubmit(e) {
+    function handleManualSubmit(e){
         e.preventDefault();
-        editRecipe(name, ingredients, instructions);
+        addRecipeManual(name, ingredients, instructions);
     }
 
     return (
         <div>
-            <h3>Edit Recipe</h3>
+            <h3>Add Recipe (Manual)</h3>
             <div>
                 {showModal && (
-                        <div class="modal">
-                            <div class="modal-content">
-                                <h3>Recipe Updated!</h3>
-                                <p>You will be automatically redirected to the Recipes page where the updated recipe should now display.</p>
-                            </div>
+                    <div class="modal">
+                        <div class="modal-content">
+                            <h3>Recipe Added!</h3>
+                            <p>You will be automatically redirected to the Recipes page where the recipe should now display.</p>
                         </div>
-                    )}
-                <form onSubmit={handleSubmit}>
+                    </div>
+                )}
+                <form onSubmit={handleManualSubmit}>
                     <table>
                         <thead>
                             <tr>
@@ -90,7 +70,7 @@ const EditRecipePage = () => {
                                         placeholder="Enter ingredients separated by commas"
                                         value={ingredients} 
                                         id="ingredients"
-                                        class="textArea"
+                                        className="textArea"
                                         onChange={e => setIngredients(e.target.value)}/>
                                 </td>
                                 <td>
@@ -112,4 +92,4 @@ const EditRecipePage = () => {
     )
 }
 
-export default EditRecipePage;
+export default AddRecipePage;

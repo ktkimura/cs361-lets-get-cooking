@@ -6,10 +6,18 @@ const fs = require('fs');
 const fsPromises = require('fs').promises;
 const path = require('path');
 const {v4: uuidv4} = require('uuid');
+const watch = require('node-watch');
+
+// Citation for async sleep function 
+// 08/14/2024
+// Copied from Stack Overflow discussion from user Dan Dascalescu's answer
+// Source URL: https://stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep
+const sleep = ms => new Promise(r => setTimeout(r, ms));
 
 const dataFilePath = path.join(__dirname, 'data.json');
-const compareFilePath = path.join(__dirname, 'ingredientCompare.json');
-const compareOutputFilePath = path.join(__dirname, 'ingredient.json');
+const compareFilePath = path.join(__dirname, 'microA/ingredientCompare.json');
+const compareOutputFilePath = path.join(__dirname, 'microA/ingredient.json');
+const commPipeBFilePath = path.join(__dirname, 'microB/commPipeB.json');
 
 app.use(express.json());
 
@@ -149,7 +157,50 @@ app.get("/viewRecipe/:id", async (req, res) => {
     res.status(200).json({ recipe: recipeToView, compareIngredient: receivedMsg });
 });
 
-app.post("/addRecipe", (req, res) => {
+
+async function requestRecipeDetails(requestMsg) {
+    await fsPromises.writeFile(commPipeBFilePath, JSON.stringify(requestMsg, null, 2));
+};
+
+async function receiveRecipeDetails() {
+    const data = await fsPromises.readFile(commPipeBFilePath, 'utf-8');
+    const jsonData = JSON.parse(data);
+    console.log('Received JSON Data:', jsonData);
+
+    return jsonData;
+};
+
+app.post("/addRecipeLink", async (req, res) => {
+    const recipeLink = req.body.recipeLink;
+
+    let requestMsg = { "link": recipeLink };
+
+    await requestRecipeDetails(requestMsg)
+    await sleep(5000); 
+    const receivedMsg = await receiveRecipeDetails()
+    
+    if (receivedMsg.error) {
+        res.status(400).json({ message: 'Recipe data could not be retrieved', error: receivedMsg.error })
+    } else {
+        const newRecipe = {
+            id: uuidv4(),
+            name: receivedMsg.name,
+            ingredients: receivedMsg.ingredients,
+            instructions: receivedMsg.instructions,
+        };
+    
+        const data = await fsPromises.readFile(dataFilePath, 'utf-8');
+        let currentData = JSON.parse(data);
+        currentData.recipes.push(newRecipe);
+    
+        await fsPromises.writeFile(dataFilePath, JSON.stringify(currentData, null, 2));
+    
+        res.status(200).json({ message: 'Recipe added successfully', recipe: newRecipe });
+    }
+}); 
+
+
+app.post("/addRecipeManual", (req, res) => {
     const newRecipe = {
         id: uuidv4(),
         name: req.body.name,
@@ -172,6 +223,9 @@ app.post("/addRecipe", (req, res) => {
     })
     res.status(200).json({ message: 'Recipe added successfully', recipe: newRecipe });
 });
+
+
+
 
 app.get("/editRecipe/:id", (req, res) => {
     fs.readFile(dataFilePath, 'utf-8', (err, data) => {
