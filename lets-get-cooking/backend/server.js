@@ -129,20 +129,19 @@ async function receiveExpiredIngredients() {
 app.get("/viewExpiredIngredients", async (req, res) => {
     let ingredientArr;
 
-    fs.readFile(dataFilePath, 'utf-8', (err,data) => {
-        let jsonData = JSON.parse(data);
-        ingredientArr = jsonData.ingredients;
-    });
+    const data = await fsPromises.readFile(dataFilePath, 'utf-8');
+    let jsonData = JSON.parse(data);
+    ingredientArr = { ingredients: jsonData.ingredients };
 
-    requestExpiredIngredients(ingredientArr);
+    await requestExpiredIngredients(ingredientArr);
     await sleep(1000);
     const receivedMsg = await receiveExpiredIngredients();
 
-    if (receivedMsg.expiredIngredients.length === 0) {
+    if (!receivedMsg.expiredIngredients || receivedMsg.expiredIngredients.length === 0) {
         res.status(400).json({ error: "There are no expired ingredients!" });
-    } 
-
-    res.json(receivedMsg.expiredIngredients);
+    } else {
+        res.json(receivedMsg.expiredIngredients);
+    }
 });
 
 

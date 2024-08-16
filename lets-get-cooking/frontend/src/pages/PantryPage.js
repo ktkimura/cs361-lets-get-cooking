@@ -8,6 +8,7 @@ function PantryPage(){
     const [showDeleteModal, setShowDeleteModal]             = useState(false);
     const [showDeleteDoneModal, setShowDeleteDoneModal]     = useState(false);
     const [showExpiredModal, setShowExpiredModal]           = useState(false);
+    const [showNoExpiredModal, setShowNoExpiredModal]       = useState(false);
     const [selectedIngredient, setSelectedIngredient]       = useState(null);
 
     function getIngredients() {
@@ -21,9 +22,15 @@ function PantryPage(){
 
     function viewExpiredIngredients() {
         fetch("/viewExpiredIngredients")
+            .then(response => response.json())
             .then(data => {
-                setExpiredIngredients(data);
-            })
+                if (data.error){
+                    setShowNoExpiredModal(true);
+                } else {
+                    setExpiredIngredients(data);
+                    setShowExpiredModal(true);
+                }
+            });
     };
 
     function deleteIngredient(id) {
@@ -57,7 +64,7 @@ function PantryPage(){
             <h2>Pantry</h2>
             <br></br>
             <Link to="/addIngredient" class="btn">Add Ingredient</Link>
-            <button onClick={viewExpiredIngredients()}>View Expired Ingredients</button>
+            <button onClick={() => {viewExpiredIngredients()}}>View Expired Ingredients</button>
             <table>
             <thead>
                 <tr>
@@ -108,8 +115,8 @@ function PantryPage(){
                     <table>
                         <thead>
                             <tr>
-                                <td>Ingredient Name</td>
-                                <td>Expiration Date</td>
+                                <th>Ingredient Name</th>
+                                <th>Expiration Date</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -124,8 +131,15 @@ function PantryPage(){
                     <button onClick={() => setShowExpiredModal(false)}>Close</button>
                 </div>
             </div>
-        )};
-
+        )}
+        {showNoExpiredModal && (
+            <div class="modal">
+                <div class="modal-content">
+                    <h3>You have no expired ingredients!</h3>
+                    <button onClick={() => setShowNoExpiredModal(false)}>Close</button>
+                </div>
+            </div>
+        )}
         </>
     );
 }
