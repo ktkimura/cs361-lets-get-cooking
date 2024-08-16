@@ -1,5 +1,17 @@
 {
-  "expiredIngredients": [
+  "ingredients": [
+    {
+      "id": "24fa6dab-cc55-4e4f-b3b4-be662d0727e9",
+      "name": "miso",
+      "quantity": "1",
+      "expirationDate": "2024-08-28"
+    },
+    {
+      "id": "92529cbd-23d4-4aa1-90e9-ad22e1a5931f",
+      "name": "sesame oil",
+      "quantity": "12 oz",
+      "expirationDate": "2024-08-20"
+    },
     {
       "id": "d4cbe501-4a80-47e7-96fc-78013173e349",
       "name": "mirin",

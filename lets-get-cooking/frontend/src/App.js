@@ -25,8 +25,8 @@ function App() {
       <BrowserRouter>
         <header>
             <h1>Let's Get Cooking!</h1>
+            <Navigation />
         </header>
-        <Navigation />
         <main>
           <section>
             <Routes>
