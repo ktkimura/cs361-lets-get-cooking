@@ -1,0 +1,28 @@
+{
+  "expiredIngredients": [
+    {
+      "id": "a7461489-5190-4c13-b520-0ef6b01ef604",
+      "name": "apples",
+      "quantity": "2 small",
+      "expirationDate": "2024-08-08"
+    },
+    {
+      "id": "5eb281ea-8baa-4582-bae2-1677efc55af3",
+      "name": "salmon",
+      "quantity": "1",
+      "expirationDate": "2024-08-07"
+    },
+    {
+      "id": "f219a843-81fa-4b85-88ac-04f99133f8cf",
+      "name": "soy sauce",
+      "quantity": "8 oz",
+      "expirationDate": "2024-08-07"
+    },
+    {
+      "id": "fd8d7251-7d7a-4b90-9f5c-f17853a18f95",
+      "name": "butter",
+      "quantity": "10 oz",
+      "expirationDate": "2024-08-16"
+    }
+  ]
+}

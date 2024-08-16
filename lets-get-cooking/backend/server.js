@@ -1,3 +1,4 @@
+const exp = require('constants');
 const express = require('express');
 const app = express();
 const port = 8000;
@@ -6,7 +7,6 @@ const fs = require('fs');
 const fsPromises = require('fs').promises;
 const path = require('path');
 const {v4: uuidv4} = require('uuid');
-const watch = require('node-watch');
 
 // Citation for async sleep function 
 // 08/14/2024
@@ -18,6 +18,7 @@ const dataFilePath = path.join(__dirname, 'data.json');
 const compareFilePath = path.join(__dirname, 'microA/ingredientCompare.json');
 const compareOutputFilePath = path.join(__dirname, 'microA/ingredient.json');
 const commPipeBFilePath = path.join(__dirname, 'microB/commPipeB.json');
+const commPipeDFilePath = path.join(__dirname, 'microD/commPipeD.json');
 
 app.use(express.json());
 
@@ -114,6 +115,37 @@ app.delete("/deleteIngredient/:id", (req, res) => {
     });
 });
 
+
+async function requestExpiredIngredients(requestMsg) {
+    await fsPromises.writeFile(commPipeDFilePath, JSON.stringify(requestMsg, null, 2));
+};
+
+async function receiveExpiredIngredients() {
+    const data = await fsPromises.readFile(commPipeDFilePath, 'utf-8');
+    const jsonData = JSON.parse(data);
+    return jsonData;
+};
+
+app.get("/viewExpiredIngredients", async (req, res) => {
+    let ingredientArr;
+
+    fs.readFile(dataFilePath, 'utf-8', (err,data) => {
+        let jsonData = JSON.parse(data);
+        ingredientArr = jsonData.ingredients;
+    });
+
+    requestExpiredIngredients(ingredientArr);
+    await sleep(1000);
+    const receivedMsg = await receiveExpiredIngredients();
+
+    if (receivedMsg.expiredIngredients.length === 0) {
+        res.status(400).json({ error: "There are no expired ingredients!" });
+    } 
+
+    res.json(receivedMsg.expiredIngredients);
+});
+
+
 // Recipe-related Routing
 app.get("/recipes", (req, res) => {
     fs.readFile(dataFilePath, 'utf-8', function(err,data) {
@@ -173,20 +205,20 @@ async function receiveRecipeDetails() {
 app.post("/addRecipeLink", async (req, res) => {
     const recipeLink = req.body.recipeLink;
 
-    let requestMsg = { "link": recipeLink };
+    let recipeLinkObj = { "link": recipeLink };
 
-    await requestRecipeDetails(requestMsg)
+    await requestRecipeDetails(recipeLinkObj)
     await sleep(5000); 
-    const receivedMsg = await receiveRecipeDetails()
+    const recipeObj = await receiveRecipeDetails()
     
-    if (receivedMsg.error) {
-        res.status(400).json({ message: 'Recipe data could not be retrieved', error: receivedMsg.error })
+    if (recipeObj.error) {
+        res.status(400).json({ message: 'Recipe data could not be retrieved', error: recipeObj.error })
     } else {
         const newRecipe = {
             id: uuidv4(),
-            name: receivedMsg.name,
-            ingredients: receivedMsg.ingredients,
-            instructions: receivedMsg.instructions,
+            name: recipeObj.name,
+            ingredients: recipeObj.ingredients,
+            instructions: recipeObj.instructions,
         };
     
         const data = await fsPromises.readFile(dataFilePath, 'utf-8');

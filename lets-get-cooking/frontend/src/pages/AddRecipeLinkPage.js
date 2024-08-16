@@ -48,7 +48,7 @@ const AddRecipePage = () => {
                         <div class="modal-content">
                             <h3>Recipe data could not be retrieved</h3>
                             <p>Please make sure you provided a valid hyperlink!</p>
-                            <Link to="/addRecipeLink" class="btn" onClick={() => setShowErrorModal(false)}>Close</Link>
+                            <button onClick={() => setShowErrorModal(false)}>Close</button>
                         </div>
                     </div>
                 )}

@@ -4,8 +4,10 @@ import { Link } from 'react-router-dom';
 function PantryPage(){
 
     const [ingredients, setIngredients]                     = useState([]);
+    const [expiredIngredients, setExpiredIngredients]       = useState([]);
     const [showDeleteModal, setShowDeleteModal]             = useState(false);
     const [showDeleteDoneModal, setShowDeleteDoneModal]     = useState(false);
+    const [showExpiredModal, setShowExpiredModal]           = useState(false);
     const [selectedIngredient, setSelectedIngredient]       = useState(null);
 
     function getIngredients() {
@@ -15,6 +17,13 @@ function PantryPage(){
                 setIngredients(data)
                 }
             )
+    };
+
+    function viewExpiredIngredients() {
+        fetch("/viewExpiredIngredients")
+            .then(data => {
+                setExpiredIngredients(data);
+            })
     };
 
     function deleteIngredient(id) {
@@ -48,6 +57,7 @@ function PantryPage(){
             <h2>Pantry</h2>
             <br></br>
             <Link to="/addIngredient" class="btn">Add Ingredient</Link>
+            <button onClick={viewExpiredIngredients()}>View Expired Ingredients</button>
             <table>
             <thead>
                 <tr>
@@ -91,6 +101,30 @@ function PantryPage(){
                 </div>
             </div>
         )}
+        {showExpiredModal && (
+            <div class="modal">
+                <div class="modal-content">
+                    <h3>Expired Ingredients</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <td>Ingredient Name</td>
+                                <td>Expiration Date</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {expiredIngredients.map((ingredient) => (
+                                <tr key={ingredient.id}>
+                                    <td>{ingredient.name}</td>
+                                    <td>{ingredient.expirationDate}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                    <button onClick={() => setShowExpiredModal(false)}>Close</button>
+                </div>
+            </div>
+        )};
 
         </>
     );
