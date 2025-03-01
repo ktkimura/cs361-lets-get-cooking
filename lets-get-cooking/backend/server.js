@@ -115,6 +115,9 @@ app.delete("/deleteIngredient/:id", (req, res) => {
     });
 });
 
+/* 
+    MICROSERVICE D INTEGRATION START
+*/
 
 async function requestExpiredIngredients(requestMsg) {
     await fsPromises.writeFile(commPipeDFilePath, JSON.stringify(requestMsg, null, 2));
@@ -144,6 +147,10 @@ app.get("/viewExpiredIngredients", async (req, res) => {
     }
 });
 
+/* 
+    MICROSERVICE D INTEGRATION END
+*/
+
 
 // Recipe-related Routing
 app.get("/recipes", (req, res) => {
@@ -158,6 +165,10 @@ app.get("/recipes", (req, res) => {
         }
     })
 });
+
+/* 
+    MICROSERVICE A INTEGRATION START
+*/
 
 async function requestCompare(requestMsg) {
     await fsPromises.writeFile(compareFilePath, JSON.stringify(requestMsg, null, 2));
@@ -188,6 +199,13 @@ app.get("/viewRecipe/:id", async (req, res) => {
     res.status(200).json({ recipe: recipeToView, compareIngredient: receivedMsg });
 });
 
+/* 
+    MICROSERVICE A INTEGRATION END
+*/
+
+/* 
+    MICROSERVICE B INTEGRATION START
+*/
 
 async function requestRecipeDetails(requestMsg) {
     await fsPromises.writeFile(commPipeBFilePath, JSON.stringify(requestMsg, null, 2));
@@ -229,6 +247,10 @@ app.post("/addRecipeLink", async (req, res) => {
         res.status(200).json({ message: 'Recipe added successfully', recipe: newRecipe });
     }
 }); 
+
+/* 
+    MICROSERVICE B INTEGRATION END
+*/
 
 
 app.post("/addRecipeManual", (req, res) => {

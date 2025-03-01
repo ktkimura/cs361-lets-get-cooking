@@ -7,57 +7,64 @@
       "expirationDate": "2024-08-28"
     },
     {
-      "id": "92529cbd-23d4-4aa1-90e9-ad22e1a5931f",
-      "name": "sesame oil",
-      "quantity": "12 oz",
-      "expirationDate": "2024-08-20"
+      "id": "e701829e-5b7f-4d32-8560-41ba608a4578",
+      "name": "all-purpose flour",
+      "quantity": "1lb",
+      "expirationDate": "2024-07-29"
     },
     {
-      "id": "d4cbe501-4a80-47e7-96fc-78013173e349",
-      "name": "mirin",
-      "quantity": "12 oz",
-      "expirationDate": "2024-08-15"
+      "id": "8266eb16-f68d-411c-99ce-e34398daf85a",
+      "name": "salmon",
+      "quantity": "10oz",
+      "expirationDate": "2024-08-19"
+    },
+    {
+      "id": "a17908fa-5c53-42a1-95b1-0f929b89c4a4",
+      "name": "vegetable oil",
+      "quantity": "20 ml",
+      "expirationDate": "2024-07-29"
+    },
+    {
+      "id": "c767629e-975f-4c48-b0e4-4a52005a5e2e",
+      "name": "milk",
+      "quantity": "1 gallon",
+      "expirationDate": "2024-08-12"
+    },
+    {
+      "id": "94a00b5b-28c9-48ef-a7ca-06af644f98f3",
+      "name": "butter",
+      "quantity": "8oz",
+      "expirationDate": "2024-09-02"
     }
   ],
   "recipes": [
     {
-      "id": "2919c07c-c16c-422b-85fb-ada4b029f7e1",
-      "name": "miso salmon",
+      "id": "aa0c442a-dbdc-49d3-9a8b-21472148fb8a",
+      "name": "Asparagus Shrimp Pasta",
       "ingredients": [
-        "miso",
-        "salmon",
-        "soy sauce",
-        "mirin",
-        "sesame oil"
-      ],
-      "instructions": "1. combine all ingredients to make marinade 2. marinade salmon overnight 3. bake at 350F for 30 minutes"
-    },
-    {
-      "id": "7b6d2a7e-483a-4047-a758-36ac67f972c0",
-      "name": "Delicious Egg Salad",
-      "ingredients": [
-        "8 large eggs",
-        "½ cup mayonnaise",
-        "¼ cup chopped green onion",
-        "1 teaspoon prepared yellow mustard",
-        "¼ teaspoon paprika",
-        "salt and pepper to taste"
-      ],
-      "instructions": "Place eggs in a saucepan and cover with cold water. Bring water to a boil and immediately remove from heat. Cover and let eggs stand in hot water for 10 to 12 minutes. Remove from hot water, cool, peel, and chop.\nPlace chopped eggs in a bowl; stir in mayonnaise, green onion, and mustard. Season with paprika, salt, and pepper. Stir and serve on your favorite bread, crackers, or salad greens."
-    },
-    {
-      "id": "c0795d49-1a33-4b42-be37-b33ec4030570",
-      "name": "Good Old-Fashioned Pancakes",
-      "ingredients": [
-        "all-purpose flour",
-        "baking powder",
-        "white sugar",
-        "salt",
-        "milk",
+        "linguine",
         "butter",
-        "egg"
+        "asparagus",
+        "minced garlic",
+        "heavy cream",
+        "italian seasoning",
+        "lemon juice",
+        "sea salt",
+        "jumbo shrimp"
       ],
-      "instructions": "Sift flour, baking powder, sugar, and salt together in a large bowl. Make a well in the center and add milk, melted butter, and egg; mix until smooth.\nHeat a lightly oiled griddle or pan over medium-high heat. Pour or scoop the batter onto the griddle, using approximately 1/4 cup for each pancake; cook until bubbles form and the edges are dry, about 2 to 3 minutes. Flip and cook until browned on the other side. Repeat with remaining batter."
+      "instructions": "Cook pasta as directed on package. Drain, reserving 1/4 cup of the pasta cooking water\nMeanwhile, melt butter in large deep skillet on medium heat. Add asparagus and garlic; cook and stir 5 minutes or until asparagus is tender-crisp. Add cream, Seasoning, lemon juice and sea salt. Bring to boil, stirring occasionally\nStir shrimp into skillet. Reduce heat to low; simmer 5 minutes or just until shrimp turn pink. Add pasta and reserved pasta cooking water; toss to coat well. Serve immediately with grated Parmesan or Romano cheese, if desired"
+    },
+    {
+      "id": "931d090c-4319-46ca-9f81-de0aecfaa287",
+      "name": "Salsa Chicken",
+      "ingredients": [
+        "chicken breast halves",
+        "taco seasoning mix",
+        "salsa",
+        "shredded Cheddar cheese",
+        "sour cream"
+      ],
+      "instructions": "Gather all ingredients. Preheat the oven to 375 degrees F (190 degrees C). Lightly grease a 9x13-inch baking dish.\nPlace chicken breasts in the prepared dish. Sprinkle seasoning mix on both sides of chicken breasts.\nPour salsa on top.\nBake in the preheated oven until chicken is tender and juicy and the juices run clear, 25 to 35 minutes.\nSprinkle chicken evenly with cheese.\nContinue baking until cheese is melted and bubbly, 3 to 5 minutes more.\nTop with sour cream and serve."
     }
   ]
 }

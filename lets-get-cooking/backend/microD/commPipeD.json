@@ -7,16 +7,34 @@
       "expirationDate": "2024-08-28"
     },
     {
-      "id": "92529cbd-23d4-4aa1-90e9-ad22e1a5931f",
-      "name": "sesame oil",
-      "quantity": "12 oz",
-      "expirationDate": "2024-08-20"
+      "id": "e701829e-5b7f-4d32-8560-41ba608a4578",
+      "name": "all-purpose flour",
+      "quantity": "1lb",
+      "expirationDate": "2024-07-29"
     },
     {
-      "id": "d4cbe501-4a80-47e7-96fc-78013173e349",
-      "name": "mirin",
-      "quantity": "12 oz",
-      "expirationDate": "2024-08-15"
+      "id": "8266eb16-f68d-411c-99ce-e34398daf85a",
+      "name": "salmon",
+      "quantity": "10oz",
+      "expirationDate": "2024-08-19"
+    },
+    {
+      "id": "a17908fa-5c53-42a1-95b1-0f929b89c4a4",
+      "name": "vegetable oil",
+      "quantity": "20 ml",
+      "expirationDate": "2024-07-29"
+    },
+    {
+      "id": "c767629e-975f-4c48-b0e4-4a52005a5e2e",
+      "name": "milk",
+      "quantity": "1 gallon",
+      "expirationDate": "2024-08-12"
+    },
+    {
+      "id": "94a00b5b-28c9-48ef-a7ca-06af644f98f3",
+      "name": "butter",
+      "quantity": "8oz",
+      "expirationDate": "2024-09-02"
     }
   ]
 }
