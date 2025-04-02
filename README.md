@@ -1,9 +1,14 @@
 # Let's Get Cooking!
 A web application that helps you get cooking faster by serving as a digital pantry and recipe book. 
+This project was developed for my CS361 (Software Engineering I) course at Oregon State University during the Summer 2024 Term
 
-*This project was developed for my CS361 (Software Engineering I) course at Oregon State University during the Summer 2024 Term*
+> [!IMPORTANT]
+> This application currently can only be run locally at the moment as I need to rework the entire backend structure to get it hosted on the web. **Thus, I highly recommend watching the video demo below for a glimpse at what it actually looks like :)**
 
-DEMO VIDEO LINK: https://drive.google.com/file/d/1mgf7Gd2wVreb0pEzfKBYq0JaestRobVl/view?usp=sharing 
+## Links 
+[Video Demo](https://drive.google.com/file/d/1mgf7Gd2wVreb0pEzfKBYq0JaestRobVl/view?usp=sharing) 
+
+[Figma Prototype](https://www.figma.com/proto/BbdLuoNBUFTQQSOw2CSMU5/cs361_ui_design?node-id=28-1316&starting-point-node-id=28%3A1316&t=qwUEJS4NCi1vy3n3-1)
 
 ## Main Features
 - Ingredient and Recipe databases
@@ -37,8 +42,7 @@ Three of the four microservices this application uses can be found in the follow
 > [!NOTE]
 > Given that the remaining microservice was coded by one of my classmates and is in a private repo, I have chosen to not disclose it
 
-
-<!--
+<!---
 ## How to start up the website
 > [!NOTE]
 > You must have git downloaded to your system. Download git [here](https://git-scm.com/downloads)
@@ -46,11 +50,10 @@ Three of the four microservices this application uses can be found in the follow
 1. In your command line interface of choice, navigate to the directory you want to download the code to
    - For example, `$user/Documents/projects`
 2. Run the following git command: `git clone https://github.com/ktkimura/cs361-lets-get-cooking.git`. You now have a copy of this repository!
-3. Install all necessary dependencies for both frontend and backend
+3. Install all necessary dependencies for both frontend and backend 
    - For the frontend, navigate to the "lets-get-cooking/frontend" directory and run the command `npm install`
    - For the backend, navigate to the "lets-get-cooking/backend" directory and run the command `npm install` AND `pip install -r requirements.txt`
 4. Start up the website by running the command, `npm start` in both the "lets-get-cooking/frontend" and "lets-get-cooking/backend" directories.
 5. Get all microservices running by executing the following files: 
 6. Navigate to http://localhost:3000 to view the website!
 -->
- 
