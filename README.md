@@ -3,6 +3,8 @@ A web application that helps you get cooking faster by serving as a digital pant
 
 *This project was developed for my CS361 (Software Engineering I) course at Oregon State University during the Summer 2024 Term*
 
+DEMO VIDEO LINK: https://drive.google.com/file/d/1mgf7Gd2wVreb0pEzfKBYq0JaestRobVl/view?usp=sharing 
+
 ## Main Features
 - Ingredient and Recipe databases
   - Perform CRUD (Create, Read, Update, Delete) options on ingredients and recipes you wish to store
