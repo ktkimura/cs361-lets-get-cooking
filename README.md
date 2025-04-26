@@ -1,7 +1,4 @@
 # Let's Get Cooking!
-A web application that helps you get cooking faster by serving as a digital pantry and recipe book. 
-This project was developed for my CS361 (Software Engineering I) course at Oregon State University during the Summer 2024 Term
-
 > [!IMPORTANT]
 > This application currently can only be run locally at the moment as I need to rework the entire backend structure to get it hosted on the web. **Thus, I highly recommend watching the video demo below for a glimpse at what it actually looks like :)**
 
