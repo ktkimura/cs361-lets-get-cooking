@@ -6,7 +6,7 @@ This project was developed for my CS361 (Software Engineering I) course at Orego
 > This application currently can only be run locally at the moment as I need to rework the entire backend structure to get it hosted on the web. **Thus, I highly recommend watching the video demo below for a glimpse at what it actually looks like :)**
 
 ## Links 
-[Video Demo](https://drive.google.com/file/d/1mgf7Gd2wVreb0pEzfKBYq0JaestRobVl/view?usp=sharing) 
+[<img src="https://github.com/user-attachments/assets/3b77d694-afa5-4f67-87db-c23c6c5afeda" width="70%">](https://drive.google.com/file/d/1mgf7Gd2wVreb0pEzfKBYq0JaestRobVl/view?usp=sharing)
 
 [Figma Prototype](https://www.figma.com/proto/BbdLuoNBUFTQQSOw2CSMU5/cs361_ui_design?node-id=28-1316&starting-point-node-id=28%3A1316&t=qwUEJS4NCi1vy3n3-1)
 
